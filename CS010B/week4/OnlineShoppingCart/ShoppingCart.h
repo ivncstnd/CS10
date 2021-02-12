@@ -1,4 +1,4 @@
-#ifndef SHOPPINGCART_H // some header file shit
+#ifndef SHOPPINGCART_H 
 #define SHOPPINGCART_H
 
 #include <iostream>
