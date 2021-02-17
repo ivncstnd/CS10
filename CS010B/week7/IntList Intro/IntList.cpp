@@ -17,8 +17,14 @@ IntList::~IntList() {
 
 void IntList::push_front(int value) {
     IntNode* front = new IntNode(value);
-    front->next = head;
+    front -> next = head;
     head = front;
+}
+
+void IntList::pop_front() {
+    IntNode* front = head;
+    head = head -> next;
+    delete front;
 }
 
 ostream & operator<<(ostream & out, const IntList & list) {
