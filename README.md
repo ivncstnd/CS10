@@ -1,5 +1,5 @@
 ## University of California, Riverside | CS10 Series
-CS10 is a course series offered by UCR dedicated to the foundations of C++ and introductory to data structures and algorithms.
+CS10 is a course series offered by UCR dedicated to the foundations of C++ and introductory to Data Structures and Algorithms.
 
 ### CS10A
 Course Description: Covers problem solving through structured programming of algorithms on computers using the C++ object-oriented language. Includes variables, expressions, input/output (I/O), branches, loops, functions, parameters, strings.
