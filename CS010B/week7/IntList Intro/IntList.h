@@ -1,5 +1,5 @@
-#ifndef INTLIST.H
-#define INTLIST.h
+#ifndef INTLIST_H
+#define INTLIST_H
 
 using namespace std;
 
@@ -10,8 +10,8 @@ using namespace std;
 // The nodes constructor takes in an integer value 
 // and automatically assigns the next node as null
 // unless otherwise assigned to a new node structure
-//         node1                     node2
-// |value (2)|ptr (tail)| -> |value (5)|ptr (nullptr)| 
+//        node1           node2
+//     | 2 | node2 | -> | 5 | nullptr | 
 struct IntNode {
     int value;
     IntNode *next;
