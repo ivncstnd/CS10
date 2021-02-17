@@ -16,7 +16,7 @@ IntList::IntList() {
 // Finally, we set the head and tail to NULL
 IntList::~IntList() {
     IntNode* i = head;
-    while(i) {
+    while(i) {                 // While the iterator is not null
         IntNode* node = i; 
         i = i -> next;
         delete node;
@@ -49,7 +49,7 @@ void IntList::pop_front() {
 /* Accessors */
 // Checks if the head node is null
 bool IntList::empty() const {
-    if(!head) {
+    if(!head) {                 // If the head is null
         return true;
     }
     return false;
@@ -65,10 +65,10 @@ const int & IntList::front() const {
 // return the value of the last node in the list
 const int & IntList::back() const {
     IntNode* last;
-    for(IntNode* i = head; i; i = i -> next) {
-        last = i;
+    for(IntNode* i = head; i; i = i -> next) { // Starting from the head and while the iterator is not null
+        last = i;                              // Set the iterator as latest value found
     }
-    return last -> value;
+    return last -> value;                      // Return value
 }
 
 // Iterates through the list and outputs the value at the node
@@ -76,12 +76,12 @@ const int & IntList::back() const {
 // and return the list
 ostream & operator<<(ostream & out, const IntList & list) {
     IntNode* temp = list.head;
-    while(temp) {
-        if(!temp -> next) {
-            out << temp -> value;
+    while(temp) {                       // While not null
+        if(!temp -> next) {             // If the next node is null
+            out << temp -> value;       // Last value no space break
             break;
-        }
-        out << temp -> value << " ";
+        }                               // Else output node value spaced
+        out << temp -> value << " ";    
         temp = temp -> next;
     }
     return out;
