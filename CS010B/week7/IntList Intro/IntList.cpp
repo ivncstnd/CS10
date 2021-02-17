@@ -19,7 +19,7 @@ IntList::~IntList() {
         temp = head; 
         head = head -> next;
         delete temp;
-	}
+    }
 }
 
 /* Mutators */
