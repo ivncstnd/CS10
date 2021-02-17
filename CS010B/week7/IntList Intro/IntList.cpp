@@ -3,9 +3,7 @@
 
 using namespace std;
 
-IntList::IntList() {
-    head = new IntNode(NULL);
-    tail = new IntNode(NULL);
+IntList::IntList() : head(NULL), tail(NULL){
 }
 
 IntList::~IntList() {
@@ -18,13 +16,16 @@ IntList::~IntList() {
 }
 
 void IntList::push_front(int value) {
-    if(head == NULL) {
-        head = new IntNode(value);
-        tail = head;
+    IntNode* front = new IntNode(value);
+    front->next = head;
+    head = front;
+}
+
+ostream & operator<<(ostream & out, const IntList & list) {
+    IntNode* temp = list.head;
+    while(temp != NULL) {
+        out << temp->value << " ";
+        temp = temp->next;
     }
-    else {
-        IntNode* temp = new IntNode(value);
-        temp->next = head;
-        head = temp;
-    }
+    return out;
 }

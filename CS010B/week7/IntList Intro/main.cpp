@@ -3,13 +3,10 @@
 using namespace std;
 
 int main() {
-    list = new IntList();
-    IntNode* head;
-    IntNode* tail = nullptr;
-    head = new IntNode(10);
-    tail = new IntNode(20);
-    list.push_front(head);
-    list.push_front(tail);
-    
+    IntList list;
+    list.push_front(20);
+    list.push_front(19);
+    list.push_front(18);
+    cout << list << endl;
     return 0;
 }
