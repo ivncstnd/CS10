@@ -29,9 +29,20 @@ int main() {
         cout << "pushfront 300" << endl;
         list1.push_front(300);
         cout << "list1: " << list1 << endl;
+        cout << "list1 front: " << list1.front() << endl;
+        cout << "list1 back: " << list1.back() << endl;
         cout << endl;
         cout << "Calling list1 destructor..." << endl;
     }
     cout << "list1 destructor returned" << endl;
+
+    {
+        cout << "\nlist2 constructor called" << endl;
+        IntList list2;
+        if (list2.empty()) 
+            cout << "list2 is empty" << endl;
+        cout << "\nCalling list2 destructor..." << endl;
+   }
+   cout << "list2 destructor returned" << endl;
     return 0;
 }

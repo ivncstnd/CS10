@@ -3,7 +3,9 @@
 
 using namespace std;
 
-IntList::IntList() : head(NULL), tail(NULL){
+IntList::IntList() {
+    head = NULL;
+    tail = NULL;
 }
 
 IntList::~IntList() {
@@ -25,6 +27,21 @@ void IntList::pop_front() {
     IntNode* front = head;
     head = head -> next;
     delete front;
+}
+
+bool IntList::empty() const {
+    if(head == NULL) {
+        return true;
+    }
+    return false;
+}
+
+const int & IntList::front() const {
+    return head->value;
+}
+
+const int & IntList::back() const {
+    return tail->value;
 }
 
 ostream & operator<<(ostream & out, const IntList & list) {
