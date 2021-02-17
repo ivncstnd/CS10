@@ -11,15 +11,18 @@ IntList::IntList() {
 }
 
 /* Deconstructor */
-// Deleting the list requires going through each element
-// and deleting the element, freeing one by one
+// Deleting the list requires iterating through each element
+// and deleting the element, freeing one by one.
+// Finally, we set the head and tail to NULL
 IntList::~IntList() {
-    IntNode* temp;
-    while(head) {
-        temp = head; 
-        head = head -> next;
-        delete temp;
+    IntNode* i = head;
+    while(i) {
+        IntNode* node = i; 
+        i = i -> next;
+        delete node;
     }
+   head = NULL;
+   tail = NULL;
 }
 
 /* Mutators */
@@ -33,12 +36,13 @@ void IntList::push_front(int value) {
 
 // Removes the first element from the list
 // By assigning the original head to a new node and making the next node
-// the head allowing the deletion of the original head
+// the head allowing the deletion of the original head.
 void IntList::pop_front() {
     if(!empty()) {
         IntNode* front = head;
         head = head -> next;
         delete front;
+        front = nullptr;        // Set the front pointer to null to prevent dangling
     }
 }
 
@@ -61,8 +65,8 @@ const int & IntList::front() const {
 // return the value of the last node in the list
 const int & IntList::back() const {
     IntNode* last;
-    for(IntNode* temp = head; temp != NULL; temp = temp -> next) {
-        last = temp;
+    for(IntNode* i = head; i; i = i -> next) {
+        last = i;
     }
     return last -> value;
 }
