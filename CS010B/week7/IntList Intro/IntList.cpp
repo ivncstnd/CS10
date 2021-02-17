@@ -37,18 +37,36 @@ bool IntList::empty() const {
 }
 
 const int & IntList::front() const {
-    return head->value;
+    return head -> value;
 }
 
 const int & IntList::back() const {
-    return tail->value;
+    /*
+    IntNode* temp = head;
+    IntNode* last;
+    while (temp != NULL) {
+        last = temp;
+        temp = temp -> next;
+    }
+    return last -> value;
+    */
+
+    IntNode* last;
+    for(IntNode* temp = head; temp != NULL; temp = temp -> next) {
+        last = temp;
+    }
+    return last -> value;
 }
 
 ostream & operator<<(ostream & out, const IntList & list) {
     IntNode* temp = list.head;
     while(temp != NULL) {
-        out << temp->value << " ";
-        temp = temp->next;
+        if(temp -> next == NULL) {
+            out << temp -> value;
+            break;
+        }
+        out << temp -> value << " ";
+        temp = temp -> next;
     }
     return out;
 }
