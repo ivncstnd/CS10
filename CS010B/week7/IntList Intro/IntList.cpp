@@ -38,7 +38,7 @@ void IntList::push_front(int value) {
 // By assigning the original head to a new node and making the next node
 // the head allowing the deletion of the original head.
 void IntList::pop_front() {
-    if(!empty()) {
+    if(!empty()) {              // Does nothing if empty
         IntNode* front = head;
         head = head -> next;
         delete front;
@@ -49,7 +49,7 @@ void IntList::pop_front() {
 /* Accessors */
 // Checks if the head node is null
 bool IntList::empty() const {
-    if(head == NULL) {
+    if(!head) {
         return true;
     }
     return false;
@@ -76,8 +76,8 @@ const int & IntList::back() const {
 // and return the list
 ostream & operator<<(ostream & out, const IntList & list) {
     IntNode* temp = list.head;
-    while(temp != NULL) {
-        if(temp -> next == NULL) {
+    while(temp) {
+        if(!temp -> next) {
             out << temp -> value;
             break;
         }
