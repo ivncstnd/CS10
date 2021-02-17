@@ -35,9 +35,11 @@ void IntList::push_front(int value) {
 // By assigning the original head to a new node and making the next node
 // the head allowing the deletion of the original head
 void IntList::pop_front() {
-    IntNode* front = head;
-    head = head -> next;
-    delete front;
+    if(!empty()) {
+        IntNode* front = head;
+        head = head -> next;
+        delete front;
+    }
 }
 
 /* Accessors */
