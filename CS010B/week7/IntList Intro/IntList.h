@@ -12,6 +12,7 @@ using namespace std;
 // unless otherwise assigned to a new node structure
 //        node1           node2
 //     | 2 | node2 | -> | 5 | nullptr | 
+// Often this data structure is depicted as a staircase
 struct IntNode {
     int value;
     IntNode *next;
