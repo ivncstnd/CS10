@@ -31,10 +31,17 @@ int main() {
         cout << "list1: " << list1 << endl;
         cout << "list1 front: " << list1.front() << endl;
         cout << "list1 back: " << list1.back() << endl;
+        IntList list3(list1);
+        cout << "list3: " << list3 << endl;
+        cout << "pushfront 400" << endl;
+        list3.push_front(400);
+        cout << "list3: " << list3 << endl;
+        cout << "list1: " << list1 << endl;
         cout << endl;
-        cout << "Calling list1 destructor..." << endl;
+        cout << "Calling list1 & list3 destructor..." << endl;
+        
     }
-    cout << "list1 destructor returned" << endl;
+    cout << "list1 & list3 destructor returned" << endl;
 
     {
         cout << "\nlist2 constructor called" << endl;

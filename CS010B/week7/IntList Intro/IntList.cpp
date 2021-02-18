@@ -10,6 +10,21 @@ IntList::IntList() {
     tail = NULL;
 }
 
+IntList::IntList(const IntList &cpy) {
+    head = NULL;
+    tail = NULL;
+    IntNode *ref = NULL;
+    // 
+    for(IntNode *i = cpy.head; i; i = i -> next) {
+        IntNode *temp = new IntNode(i -> value);
+        if(ref)
+            ref -> next = temp;
+        else
+            head = temp;
+        ref = temp;
+    }
+}
+
 /* Deconstructor */
 // Deleting the list requires iterating through each element
 // and deleting the element, freeing one by one.
