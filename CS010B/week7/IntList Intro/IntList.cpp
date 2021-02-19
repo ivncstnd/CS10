@@ -24,7 +24,7 @@ IntList::IntList(const IntList &cpy) {
     for(IntNode *i = cpy.head; i; i = i -> next) {
         IntNode *node = new IntNode(i -> value);
         if(!ref) {
-            head = node;
+            head = tail = node;
         } 
         else {
             ref -> next = node;
@@ -37,25 +37,27 @@ IntList::IntList(const IntList &cpy) {
 /* Deconstructor */
 // Deleting the list requires iterating through each element
 // and deleting the element, freeing one by one.
-// Finally, we set the head and tail to NULL
 IntList::~IntList() {
-    IntNode* i = head;
-    while(i) {                 // While the iterator is not null
-        IntNode* node = i; 
-        i = i -> next;
-        delete node;
+    IntNode *i = head;
+    while(i) {                  // While the iterator is not null
+        head = head -> next;
+        delete i;
+        i = head;
     }
-   head = NULL;
-   tail = NULL;
 }
 
 /* Mutators */
 // Pushes a new element to the front of the list
 // By creating a new node, the new node will become the head
 void IntList::push_front(int value) {
-    IntNode* front = new IntNode(value);
-    front -> next = head;
-    head = front;
+    if(!head) {
+        head = tail = new IntNode(value);
+    }
+    else {
+        IntNode* front = new IntNode(value);
+        front -> next = head;
+        head = front;
+    }
 }
 
 // Removes the first element from the list
@@ -102,16 +104,21 @@ const int & IntList::back() const {
 }
 
 IntList & IntList::operator=(const IntList & rhs) {
-    IntNode *ref = NULL;
-    for(IntNode* i = rhs.head; i; i = i -> next) {
-        IntNode *node = new IntNode(i -> value);
-        if(!ref) {
-            head = node;
-        } 
-        else {
-            ref -> next = node;
+    if(this != &rhs) {
+        /* free the list */
+        this -> ~IntList();
+        /* copy the list */
+        IntNode *ref = NULL;
+        for(IntNode *i = rhs.head; i; i = i -> next) {
+            IntNode *node = new IntNode(i -> value);
+            if(!ref) {
+                head = tail = node;
+            } 
+            else {
+                ref -> next = node;
+            }
+            ref = node;
         }
-        ref = node;
     }
     return *this;
 }
