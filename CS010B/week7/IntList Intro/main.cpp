@@ -3,6 +3,7 @@
 using namespace std;
 
 int main() {
+    /*
     {
         cout << "\nlist1 constructor called" << endl;
         IntList list1;
@@ -51,5 +52,20 @@ int main() {
         cout << "\nCalling list2 destructor..." << endl;
    }
    cout << "list2 destructor returned" << endl;
+   */
+
+    cout << "\nlist1 constructor called" << endl;
+    IntList list1;
+    list1.push_back(1);
+    list1.push_back(2);
+    cout << "list1: " << list1 << endl;
+    cout << "\nlist2 constructor called" << endl;
+    IntList list2;
+    cout << "list2 = list1" << endl;
+    list2 = list1;
+    cout << "list2: " << list2 << endl;
+    list2.push_back(1);
+    list2.push_back(2);
+    cout << "list2: " << list2 << endl;
     return 0;
 }

@@ -10,19 +10,28 @@ IntList::IntList() {
     tail = NULL;
 }
 
+// Creates a copy of using an existing list as a parameter
 IntList::IntList(const IntList &cpy) {
+    // Stardard list initialization
+    // Include a reference node to push front each node from copy list
     head = NULL;
     tail = NULL;
     IntNode *ref = NULL;
-    // 
+    // For each node in the copy list we create a new node to hold the
+    // copy node's properties. If the reference node is empty, we assign 
+    // the head node. Else the next reference node pointer is pointed 
+    // to the new node created  and assign the new node reference to the new node 
     for(IntNode *i = cpy.head; i; i = i -> next) {
-        IntNode *temp = new IntNode(i -> value);
-        if(ref)
-            ref -> next = temp;
-        else
-            head = temp;
-        ref = temp;
+        IntNode *node = new IntNode(i -> value);
+        if(!ref) {
+            head = node;
+        } 
+        else {
+            ref -> next = node;
+        }
+        ref = node;
     }
+    // The loop works similarly to the push_front func
 }
 
 /* Deconstructor */
@@ -61,6 +70,12 @@ void IntList::pop_front() {
     }
 }
 
+/*
+void IntList::push_back(int) {
+
+}
+*/
+
 /* Accessors */
 // Checks if the head node is null
 bool IntList::empty() const {
@@ -84,6 +99,21 @@ const int & IntList::back() const {
         last = i;                              // Set the iterator as latest value found
     }
     return last -> value;                      // Return value
+}
+
+IntList & IntList::operator=(const IntList & rhs) {
+    IntNode *ref = NULL;
+    for(IntNode* i = rhs.head; i; i = i -> next) {
+        IntNode *node = new IntNode(i -> value);
+        if(!ref) {
+            head = node;
+        } 
+        else {
+            ref -> next = node;
+        }
+        ref = node;
+    }
+    return *this;
 }
 
 // Iterates through the list and outputs the value at the node

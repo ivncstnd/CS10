@@ -40,10 +40,10 @@ class IntList {
         void selection_sort();
         void insert_ordered(int);
         void remove_duplicates();
-        IntList & operator=(const IntList &);
         bool empty() const;
         const int & front() const;
         const int & back() const;
+        IntList & operator=(const IntList &);
         friend ostream & operator<<(ostream &, const IntList &);
 };
 
