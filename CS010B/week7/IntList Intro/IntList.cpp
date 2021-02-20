@@ -78,8 +78,8 @@ void IntList::push_back(int value) {
 
 void IntList::clear() {
     if(!empty()) {
-        this->~IntList();
-        head = nullptr;
+        this->~IntList(); //delete the list
+        head = nullptr; //assign the head and tail as nullptr (new list)
         tail = nullptr;
     }
 }
@@ -91,7 +91,7 @@ void IntList::selection_sort() {
         IntNode *minimumNode = i;   //minimum node copies index's value and pointer
         for(IntNode *j = i; j; j = j -> next) { //index j holds node i's value and pointer, iteratering until nullptr (searches for smallest value)
             if(minimumNode -> value > j -> value) { //if the minimum node's value is greater than index j's value
-                minimumNode = j;                    //set the new minimum node to index j
+                minimumNode = j; //set the new minimum node to index j
             }
         }
         //finally, swap the values of the original index and the smallest value found 
@@ -102,27 +102,27 @@ void IntList::selection_sort() {
 }
 
 void IntList::insert_ordered(int value) {
-   if(empty()) {
+   if(empty()) { //if empty, push back a new value (push front also works)
         push_back(value);
    }
-   else {
-        if(value < head -> value) {
+   else { //else
+        if(value < head -> value) { //if the value is less than the head, push front the new value
             push_front(value);
         }
-        else if(value > tail -> value) {
+        else if(value > tail -> value) { //if the value is greater than the tail, push back the new value
             push_back(value);
         }
-        else {
-            IntNode *node = new IntNode(value);
-            IntNode *prevNode = head;
-            while(prevNode -> next) {
-                if(node -> value > prevNode -> next -> value) {
-                    prevNode = prevNode -> next;
+        else { //else 
+            IntNode *node = new IntNode(value); //assign a new node value with the value given
+            IntNode *prevNode = head; //assign the previous node as head (we need a references to reorganize the list)
+            while(prevNode -> next) { //while the CURRENT node is not a nullptr
+                if(node -> value > prevNode -> next -> value) { //if the value of the new node is greater than the value of the CURRENT node
+                    prevNode = prevNode -> next; //proceed
                 }
-                else {
-                    node -> next = prevNode -> next;
-                    prevNode -> next = node;
-                    return;
+                else { //else
+                    node -> next = prevNode -> next; //point the new node to the current node
+                    prevNode -> next = node; //point the previous reference node to the new node
+                    return; //exit func
                 }
             }
         }
@@ -130,22 +130,22 @@ void IntList::insert_ordered(int value) {
 }
 
 void IntList::remove_duplicates() {
-    IntNode *i = head;
-    IntNode *j = nullptr;
-    IntNode *duplicateNode = nullptr;
-    while(i && i -> next) {
-        j = i;
-        while(j -> next) {
-            if(i -> value == j -> next -> value) {
-                duplicateNode = j -> next;
-                j -> next = j -> next -> next;
-                delete(duplicateNode);
+    IntNode *i = head; //assign index as head
+    IntNode *j = nullptr; //declare 2nd index
+    IntNode *duplicateNode = nullptr; //declare duplicate node
+    while(i && i -> next) { //while index and the next index are not nullptrs
+        j = i; //assign the 2nd index to the current index
+        while(j -> next) { //while the next 2nd index is not nullptr
+            if(i -> value == j -> next -> value) { //check if the value of the stationary index node is the same value of any node on the list
+                duplicateNode = j -> next; //if true assign the 2nd indext to the duplicate node,
+                j -> next = j -> next -> next; // assign the next to the node after
+                delete(duplicateNode); //delete the duplicate
             }
-            else {
-                j = j -> next;
+            else { //else proceed
+                j = j -> next; 
             }
         }
-        i = i -> next;
+        i = i -> next; //iterate through entire list
     }
     for(IntNode *i = head; i; i = i -> next) { //readjust the tail
         if(!i->next) {
