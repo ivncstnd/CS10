@@ -12,16 +12,22 @@ IntList::IntList() {
 
 // Creates a copy of using an existing list as a parameter
 IntList::IntList(const IntList &cpy) {
-    IntNode *i = cpy.head; //iterator contains a clone of copy list's value and POINTER.
-    IntNode *node = new IntNode(i -> value); //node contains a clone of the copy list's value only.
-    head = tail = node; //assign node (copy list's head) to tail which assigns to the new head
-    i = i -> next; //iterator points to the next node in the copy list
-    while(i) { //while the iterator node is not a nullptr
-        node = new IntNode(i -> value);
-        i = i -> next;
-        tail -> next = node;
-        tail = node;
-    } //follow standard push_back procedure and iterate to the next node in the copy list
+    if(!cpy.empty()) {
+        IntNode *i = cpy.head; //iterator contains a clone of copy list's value and POINTER.
+        IntNode *node = new IntNode(i -> value); //node contains a clone of the copy list's value only.
+        head = tail = node; //assign node (copy list's head) to tail which assigns to the new head
+        i = i -> next; //iterator points to the next node in the copy list
+        while(i) { //while the iterator node is not a nullptr
+            node = new IntNode(i -> value);
+            i = i -> next;
+            tail -> next = node;
+            tail = node;
+        } //follow standard push_back procedure and iterate to the next node in the copy list
+    }
+    else {
+        head = nullptr;
+        tail = nullptr;
+    } //checks if the copy list is empty
 }
 
 /* Deconstructor */
@@ -88,15 +94,9 @@ const int & IntList::front() const {
     return head -> value;
 }
 
-// Iterates through the list until the tail is found
-// if the tail is found, last node is found
 // return the value of the last node in the list
 const int & IntList::back() const {
-    IntNode* last;
-    for(IntNode* i = head; i; i = i -> next) { // Starting from the head and while the iterator is not nullptr
-        last = i;                              // Set the iterator as latest value found
-    }
-    return last -> value;                      // Return value
+   return tail -> value;
 }
 
 IntList & IntList::operator=(const IntList & rhs) {
