@@ -79,6 +79,18 @@ void IntList::push_back(int value) {
     }
 }
 
+void IntList::clear() {
+    if(!this->empty()) {
+        IntNode *i = head;
+        while(i) {
+            head = head -> next;
+            delete i;
+            i = head;
+        }
+        head = nullptr;
+        tail = nullptr;
+    }
+}
 
 /* Accessors */
 // Checks if the head node is nullptr
@@ -101,8 +113,8 @@ const int & IntList::back() const {
 
 IntList & IntList::operator=(const IntList & rhs) {
     if(this != &rhs) {
-        // free the list 
-        this -> ~IntList();
+        // clear the list 
+        this->clear();
         // copy the list 
         IntNode *i = rhs.head;
         IntNode *node = new IntNode(i -> value);

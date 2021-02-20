@@ -74,7 +74,6 @@ int main() {
     list1.push_back(4);
     cout << "list1: " << list1 << endl;
     */
-   /*
     cout << "\nlist1 constructor called" << endl;
     IntList list1;
     cout << "list 1 push front two nodes" << endl;
@@ -101,7 +100,7 @@ int main() {
     list2.push_back(5);
     cout << "list2: " << list2 << endl;
     cout << "list1: " << list1 << endl;
-    */
+
 
    /*
     cout << "\nlist1 constructor called" << endl;
@@ -111,16 +110,27 @@ int main() {
     cout << "list2: " << list2 << endl;
     cout << "list1: " << list1 << endl;
     */
+   
+   /*
     cout << "\nlist1 constructor called" << endl;
     IntList list1;
     list1.push_front(0);
     list1.push_front(5);
     list1.push_front(20);
-    cout << "list1: " << list1 << endl;
-    cout << "list1 back: " << list1.back() << endl;
     list1.push_back(50);
     cout << "list1: " << list1 << endl;
-    cout << "list1 back: " << list1.back() << endl;
+    cout << "\nlist1 clear called" << endl;
+    list1.clear();
+    if(list1.empty()) {
+        cout << "list1 is empty" << endl;
+    }
+    cout << "list1: " << list1 << endl;
+    list1.push_front(0);
+    list1.push_front(5);
+    list1.push_front(20);
+    list1.push_back(50);
+    cout << "list1: " << list1 << endl;
+    */
 
     return 0;
 }
