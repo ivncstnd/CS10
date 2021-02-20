@@ -145,15 +145,19 @@ int main() {
 
     cout << "\nlist1 constructor called" << endl;
     IntList list1;
+    //list1.insert_ordered(6);
+    //cout << "list1: " << list1 << endl;
     list1.push_front(0);
-    list1.push_front(5);
     list1.push_back(5);
-    list1.push_front(20);
-    list1.push_back(50);
     cout << "list1: " << list1 << endl;
-    cout << "\nlist1 selection sort called" << endl;
-    list1.selection_sort();
+    list1.insert_ordered(1);
+    list1.insert_ordered(-1);
+    list1.insert_ordered(7);
+    list1.insert_ordered(12);
     cout << "list1: " << list1 << endl;
-
+    list1.insert_ordered(6);
+    cout << "list1: " << list1 << endl;
+    list1.insert_ordered(2);
+    cout << "list1: " << list1 << endl;
     return 0;
 }

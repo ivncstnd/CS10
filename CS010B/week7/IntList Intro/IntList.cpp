@@ -101,6 +101,34 @@ void IntList::selection_sort() {
     }
 }
 
+void IntList::insert_ordered(int value) {
+   if(empty()) {
+        push_back(value);
+   }
+   else {
+        if(value < head -> value) {
+            push_front(value);
+        }
+        else if(value > tail->value) {
+            push_back(value);
+        }
+        else {
+            IntNode *node = new IntNode(value);
+            IntNode *prevNode = head;
+            while(prevNode -> next) {
+                if(node -> value > prevNode -> next -> value) {
+                prevNode = prevNode -> next;
+                }
+                else {
+                    node -> next = prevNode -> next;
+                    prevNode -> next = node;
+                    return;
+                }
+            }
+        }
+    }
+}
+
 /* Accessors */
 // Checks if the head node is nullptr
 bool IntList::empty() const {
@@ -147,7 +175,7 @@ ostream & operator<<(ostream & out, const IntList & list) {
     while(temp) {                       // While not nullptr
         if(!temp -> next) {             // If the next node is nullptr
             out << temp -> value;       // Last value no space break
-            break;
+            return out;
         }                               // Else output node value spaced
         out << temp -> value << " ";    
         temp = temp -> next;
