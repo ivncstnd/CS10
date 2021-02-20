@@ -44,7 +44,6 @@ IntList::~IntList() {
 
 /* Mutators */
 // Pushes a new element to the front of the list
-// By creating a new node, the new node will become the head
 void IntList::push_front(int value) {
     if(!head) {
         head = tail = new IntNode(value);
@@ -57,8 +56,6 @@ void IntList::push_front(int value) {
 }
 
 // Removes the first element from the list
-// By assigning the original head to a new node and making the next node
-// the head allowing the deletion of the original head.
 void IntList::pop_front() {
     if(!empty()) {              // Does nothing if empty
         IntNode *front = head;
@@ -81,14 +78,26 @@ void IntList::push_back(int value) {
 
 void IntList::clear() {
     if(!this->empty()) {
-        IntNode *i = head;
-        while(i) {
-            head = head -> next;
-            delete i;
-            i = head;
-        }
+        this->~IntList();
         head = nullptr;
         tail = nullptr;
+    }
+}
+
+void IntList::selection_sort() {
+    //index node i copies list's head value and pointer
+    //i iterates through until it reaches a nullptr
+    for(IntNode *i = head; i; i = i -> next) { 
+        IntNode *minimumNode = i;   //minimum node copies index's value and pointer
+        for(IntNode *j = i; j; j = j -> next) { //index j holds node i's value and pointer, iteratering until nullptr (searches for smallest value)
+            if(minimumNode -> value > j -> value) { //if the minimum node's value is greater than index j's value
+                minimumNode = j;                    //set the new minimum node to index j
+            }
+        }
+        //finally, swap the values of the original index and the smallest value found 
+        IntNode *temp = new IntNode(i -> value);
+        i -> value = minimumNode -> value;
+        minimumNode -> value = temp -> value;
     }
 }
 
