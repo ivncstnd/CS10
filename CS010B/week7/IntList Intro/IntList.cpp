@@ -4,7 +4,7 @@
 using namespace std;
 
 /* Constructor */
-// Create an empty list by assigning the head and tail as nullptr nodes
+// Create an empty list by assigning the head and tail as nullptr nodes (they don't point to anything)
 IntList::IntList() {
     head = nullptr;
     tail = nullptr;
@@ -35,7 +35,7 @@ IntList::IntList(const IntList &cpy) {
 // and deleting the element, freeing one by one.
 IntList::~IntList() {
     IntNode *i = head;
-    while(i) {                  // While the iterator is not nullptr
+    while(i) {// While the iterator is not nullptr
         head = head -> next;
         delete i;
         i = head;
@@ -45,10 +45,10 @@ IntList::~IntList() {
 /* Mutators */
 // Pushes a new element to the front of the list
 void IntList::push_front(int value) {
-    if(empty()) {
+    if(empty()) { //if empty, declare a new tail and have the head point to the tail
         head = tail = new IntNode(value);
     }
-    else {
+    else { //else declare a new front node, point the front's pointer to the old head, and assign front the new head
         IntNode *front = new IntNode(value);
         front -> next = head;
         head = front;
@@ -57,19 +57,19 @@ void IntList::push_front(int value) {
 
 // Removes the first element from the list
 void IntList::pop_front() {
-    if(!empty()) {              // Does nothing if empty
-        IntNode *front = head;
-        head = head -> next;
-        delete front;
-        front = nullptr;        // Set the front pointer to nullptr to prevent dangling
+    if(!empty()) { // Does nothing if empty
+        IntNode *front = head; //assign a new front node with the current head node
+        head = head -> next; //make the new head the next node
+        delete front; //delete the old head from the heap
+        front = nullptr; //Set the front pointer to nullptr to prevent dangling (doesn't point to anywhere anymore)
     }
 }
 
 void IntList::push_back(int value) {
-    if(empty()) {
+    if(empty()) { //if empty, declare a new tail and have the head point to the tail
         head = tail = new IntNode(value);
     }
-    else {
+    else { //else declare a new back node, point the tail pointer to the new node, and then assign back as the new tail
         IntNode *back = new IntNode(value);
         tail -> next = back;
         tail = back;
