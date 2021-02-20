@@ -1,6 +1,7 @@
 #ifndef INTLIST_H
 #define INTLIST_H
 
+#include <iostream>
 using namespace std;
 
 /* Node Structure */

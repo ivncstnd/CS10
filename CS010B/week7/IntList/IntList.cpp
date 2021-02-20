@@ -173,6 +173,7 @@ IntList & IntList::operator=(const IntList & rhs) {
     return *this;
 }
 
+
 ostream & operator<<(ostream & out, const IntList & list) {
     IntNode* temp = list.head;
     while(temp) {

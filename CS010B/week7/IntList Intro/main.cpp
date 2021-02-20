@@ -191,6 +191,7 @@ int main() {
     cout << "list1: " << list1 << endl;
     */
    
+    /*
        cout << "Enter a test number(1-5): ";
 	int test;
 	cin >> test;
@@ -406,6 +407,15 @@ int main() {
    if (test == 5) {
       cout << "list5 destructor called" << endl;
    }
+   */
+
+    IntList list1;
+    list1.remove_duplicates();
+    list1.back();
+    list1.front();
+    list1.pop_front();
+    list1.pop_front();
+    cout << list1 << endl;
    
    /*
    * Destructor will be tested by looking at code. There is no run-time 
