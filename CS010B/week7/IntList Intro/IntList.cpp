@@ -45,7 +45,7 @@ IntList::~IntList() {
 /* Mutators */
 // Pushes a new element to the front of the list
 void IntList::push_front(int value) {
-    if(!head) {
+    if(empty()) {
         head = tail = new IntNode(value);
     }
     else {
@@ -66,7 +66,7 @@ void IntList::pop_front() {
 }
 
 void IntList::push_back(int value) {
-    if(!head) {
+    if(empty()) {
         head = tail = new IntNode(value);
     }
     else {
@@ -77,7 +77,7 @@ void IntList::push_back(int value) {
 }
 
 void IntList::clear() {
-    if(!this->empty()) {
+    if(!empty()) {
         this->~IntList();
         head = nullptr;
         tail = nullptr;
@@ -109,7 +109,7 @@ void IntList::insert_ordered(int value) {
         if(value < head -> value) {
             push_front(value);
         }
-        else if(value > tail->value) {
+        else if(value > tail -> value) {
             push_back(value);
         }
         else {
@@ -117,7 +117,7 @@ void IntList::insert_ordered(int value) {
             IntNode *prevNode = head;
             while(prevNode -> next) {
                 if(node -> value > prevNode -> next -> value) {
-                prevNode = prevNode -> next;
+                    prevNode = prevNode -> next;
                 }
                 else {
                     node -> next = prevNode -> next;
@@ -126,6 +126,26 @@ void IntList::insert_ordered(int value) {
                 }
             }
         }
+    }
+}
+
+void IntList::remove_duplicates() {
+    IntNode *i = head;
+    IntNode *j = nullptr;
+    IntNode *duplicateNode = nullptr;
+    while(i && i -> next) {
+        j = i;
+        while(j -> next) {
+            if(i -> value == j -> next -> value) {
+                duplicateNode = j -> next;
+                j -> next = j -> next -> next;
+                delete(duplicateNode);
+            }
+            else {
+                j = j -> next;
+            }
+        }
+        i = i -> next;
     }
 }
 
@@ -151,7 +171,7 @@ const int & IntList::back() const {
 IntList & IntList::operator=(const IntList & rhs) {
     if(this != &rhs) {
         // clear the list 
-        this->clear();
+        clear();
         // copy the list 
         IntNode *i = rhs.head;
         IntNode *node = new IntNode(i -> value);
