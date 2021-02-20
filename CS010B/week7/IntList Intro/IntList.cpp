@@ -4,34 +4,24 @@
 using namespace std;
 
 /* Constructor */
-// Create an empty list by assigning the head and tail as null nodes
+// Create an empty list by assigning the head and tail as nullptr nodes
 IntList::IntList() {
-    head = NULL;
-    tail = NULL;
+    head = nullptr;
+    tail = nullptr;
 }
 
 // Creates a copy of using an existing list as a parameter
 IntList::IntList(const IntList &cpy) {
-    // Stardard list initialization
-    // Include a reference node to push front each node from copy list
-    head = NULL;
-    tail = NULL;
-    IntNode *ref = NULL;
-    // For each node in the copy list we create a new node to hold the
-    // copy node's properties. If the reference node is empty, we assign 
-    // the head node. Else the next reference node pointer is pointed 
-    // to the new node created  and assign the new node reference to the new node 
-    for(IntNode *i = cpy.head; i; i = i -> next) {
-        IntNode *node = new IntNode(i -> value);
-        if(!ref) {
-            head = tail = node;
-        } 
-        else {
-            ref -> next = node;
-        }
-        ref = node;
-    }
-    // The loop works similarly to the push_front func
+    IntNode *i = cpy.head; //iterator contains a clone of copy list's value and POINTER.
+    IntNode *node = new IntNode(i -> value); //node contains a clone of the copy list's value only.
+    head = tail = node; //assign node (copy list's head) to tail which assigns to the new head
+    i = i -> next; //iterator points to the next node in the copy list
+    while(i) { //while the iterator node is not a nullptr
+        node = new IntNode(i -> value);
+        i = i -> next;
+        tail -> next = node;
+        tail = node;
+    } //follow standard push_back procedure and iterate to the next node in the copy list
 }
 
 /* Deconstructor */
@@ -39,7 +29,7 @@ IntList::IntList(const IntList &cpy) {
 // and deleting the element, freeing one by one.
 IntList::~IntList() {
     IntNode *i = head;
-    while(i) {                  // While the iterator is not null
+    while(i) {                  // While the iterator is not nullptr
         head = head -> next;
         delete i;
         i = head;
@@ -54,7 +44,7 @@ void IntList::push_front(int value) {
         head = tail = new IntNode(value);
     }
     else {
-        IntNode* front = new IntNode(value);
+        IntNode *front = new IntNode(value);
         front -> next = head;
         head = front;
     }
@@ -65,23 +55,29 @@ void IntList::push_front(int value) {
 // the head allowing the deletion of the original head.
 void IntList::pop_front() {
     if(!empty()) {              // Does nothing if empty
-        IntNode* front = head;
+        IntNode *front = head;
         head = head -> next;
         delete front;
-        front = nullptr;        // Set the front pointer to null to prevent dangling
+        front = nullptr;        // Set the front pointer to nullptr to prevent dangling
     }
 }
 
-/*
-void IntList::push_back(int) {
-
+void IntList::push_back(int value) {
+    if(!head) {
+        head = tail = new IntNode(value);
+    }
+    else {
+        IntNode *back = new IntNode(value);
+        tail -> next = back;
+        tail = back;
+    }
 }
-*/
+
 
 /* Accessors */
-// Checks if the head node is null
+// Checks if the head node is nullptr
 bool IntList::empty() const {
-    if(!head) {                 // If the head is null
+    if(!head) {                 // If the head is nullptr
         return true;
     }
     return false;
@@ -97,7 +93,7 @@ const int & IntList::front() const {
 // return the value of the last node in the list
 const int & IntList::back() const {
     IntNode* last;
-    for(IntNode* i = head; i; i = i -> next) { // Starting from the head and while the iterator is not null
+    for(IntNode* i = head; i; i = i -> next) { // Starting from the head and while the iterator is not nullptr
         last = i;                              // Set the iterator as latest value found
     }
     return last -> value;                      // Return value
@@ -105,20 +101,19 @@ const int & IntList::back() const {
 
 IntList & IntList::operator=(const IntList & rhs) {
     if(this != &rhs) {
-        /* free the list */
+        // free the list 
         this -> ~IntList();
-        /* copy the list */
-        IntNode *ref = NULL;
-        for(IntNode *i = rhs.head; i; i = i -> next) {
-            IntNode *node = new IntNode(i -> value);
-            if(!ref) {
-                head = tail = node;
-            } 
-            else {
-                ref -> next = node;
-            }
-            ref = node;
-        }
+        // copy the list 
+        IntNode *i = rhs.head;
+        IntNode *node = new IntNode(i -> value);
+        head = tail = node;
+        i = i -> next;
+        while(i) {
+            node = new IntNode(i -> value);
+            tail -> next = node;
+            tail = node;
+            i = i -> next;
+        } 
     }
     return *this;
 }
@@ -128,8 +123,8 @@ IntList & IntList::operator=(const IntList & rhs) {
 // and return the list
 ostream & operator<<(ostream & out, const IntList & list) {
     IntNode* temp = list.head;
-    while(temp) {                       // While not null
-        if(!temp -> next) {             // If the next node is null
+    while(temp) {                       // While not nullptr
+        if(!temp -> next) {             // If the next node is nullptr
             out << temp -> value;       // Last value no space break
             break;
         }                               // Else output node value spaced

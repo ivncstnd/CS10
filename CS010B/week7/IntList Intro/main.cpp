@@ -53,7 +53,7 @@ int main() {
    }
    cout << "list2 destructor returned" << endl;
    */
-
+    /*
     cout << "\nlist1 constructor called" << endl;
     IntList list1;
     list1.push_front(1);
@@ -71,8 +71,35 @@ int main() {
     list1 = list2;
     cout << "list1: " << list1 << endl;
     list1.push_front(3);
-    list1.push_front(4);
+    list1.push_back(4);
     cout << "list1: " << list1 << endl;
-    
+    */
+
+    cout << "\nlist1 constructor called" << endl;
+    IntList list1;
+    cout << "list 1 push front two nodes" << endl;
+    list1.push_front(2);
+    list1.push_front(1);
+    cout << "list1: " << list1 << endl;
+    cout << "list1 push back" << endl;
+    list1.push_back(3);
+    cout << "list1: " << list1 << endl;
+    cout << "list1 push front / back" << endl;
+    list1.push_front(0);
+    list1.push_back(4);
+    cout << "list1: " << list1 << endl;
+    cout << "\nlist2 constructor called" << endl;
+    IntList list2;
+    list2.push_front(-1);
+    list2.push_back(5);
+    cout << "list2: " << list2 << endl;
+    cout << "list2 = list1" << endl;
+    list2 = list1;
+    cout << "list2: " << list2 << endl;
+    cout << "list2 push front / back" << endl;
+    list2.push_front(-1);
+    list2.push_back(5);
+    cout << "list2: " << list2 << endl;
+    cout << "list1: " << list1 << endl;
     return 0;
 }
