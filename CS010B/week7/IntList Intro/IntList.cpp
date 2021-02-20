@@ -147,6 +147,11 @@ void IntList::remove_duplicates() {
         }
         i = i -> next;
     }
+    for(IntNode *i = head; i; i = i -> next) { //readjust the tail
+        if(!i->next) {
+            tail = i;
+        }
+    }
 }
 
 /* Accessors */
@@ -165,24 +170,26 @@ const int & IntList::front() const {
 
 // return the value of the last node in the list
 const int & IntList::back() const {
-   return tail -> value;
+    return tail -> value;
 }
 
 IntList & IntList::operator=(const IntList & rhs) {
     if(this != &rhs) {
         // clear the list 
         clear();
-        // copy the list 
-        IntNode *i = rhs.head;
-        IntNode *node = new IntNode(i -> value);
-        head = tail = node;
-        i = i -> next;
-        while(i) {
-            node = new IntNode(i -> value);
-            tail -> next = node;
-            tail = node;
+        // copy the list if the rhs list is not empty
+        if(!rhs.empty()) {
+            IntNode *i = rhs.head;
+            IntNode *node = new IntNode(i -> value);
+            head = tail = node;
             i = i -> next;
-        } 
+            while(i) {
+                node = new IntNode(i -> value);
+                tail -> next = node;
+                tail = node;
+                i = i -> next;
+            } 
+        } //otherwise, return empty
     }
     return *this;
 }

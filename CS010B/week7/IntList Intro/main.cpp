@@ -191,7 +191,6 @@ int main() {
     cout << "list1: " << list1 << endl;
     */
    
-    /*
        cout << "Enter a test number(1-5): ";
 	int test;
 	cin >> test;
@@ -407,8 +406,69 @@ int main() {
    if (test == 5) {
       cout << "list5 destructor called" << endl;
    }
-   */
 
+   if(test == 6) {
+      cout << endl;
+      cout << "list6 constructor called" << endl;
+      IntList list6;
+      cout << "pushfront 10" << endl;
+      list6.push_front(10);
+      cout << "pushfront 20" << endl;
+      list6.push_front(20);
+      cout << "pushfront 10" << endl;
+      list6.push_front(10);
+      cout << "pushfront 30" << endl;
+      list6.push_front(30);
+      cout << "list6: " << list6 << endl;
+      cout << endl;
+      cout << "list7 constructor called" << endl;
+      IntList list7;
+      cout << "list7 = list6" << endl;
+      list7 = list6;
+      cout << "list7: " << list7 << endl;
+      cout << endl;
+      cout << "clearing list6 & list7" << endl;
+      list6.clear();
+      list7.clear();
+      cout << "list7 = list6" << endl;
+      list7 = list6;
+      cout << "list 6: " << list6 << endl;
+      cout << "list 7: " << list7 << endl;
+      cout << endl;
+   }
+   if(test == 6) {
+      cout << "list6 destructor called" << endl;
+   }
+
+   if(test == 7) {
+      cout << endl;
+      cout << "list8 constructor called" << endl;
+      IntList list8;
+      cout << "list8 push front 5 nodes" << endl;
+      list8.push_front(1);
+      list8.push_front(1);
+      list8.push_front(5);
+      list8.push_front(1);
+      list8.push_front(3);
+      cout << "list8: " << list8 << endl;
+      cout << "remove duplicates" << endl;
+      list8.remove_duplicates();
+      cout << "list8: " << list8 << endl;
+      cout << "list8 back: " << list8.back() << endl;
+      cout << endl; 
+      list8.push_front(5);
+      list8.push_front(5);
+      cout << "list8: " << list8 << endl;
+      cout << "remove duplicates" << endl;
+      list8.remove_duplicates();
+      cout << "list8: " << list8 << endl;
+      cout << "list8 back: " << list8.back() << endl;
+      cout << endl; 
+   }
+   if(test == 7) {
+      cout << "list8 destructor called" << endl;
+   }
+   /*
     IntList list1;
     list1.remove_duplicates();
     list1.back();
@@ -416,12 +476,19 @@ int main() {
     list1.pop_front();
     list1.pop_front();
     cout << list1 << endl;
+    */
    
    /*
    * Destructor will be tested by looking at code. There is no run-time 
    * test for it. Make sure your destructor actually deletes ALL nodes, not
    * just the head and/or tail.
    */
-   
+
+  /*
+   IntList list1;
+   IntList list2;
+   list1 = list2;
+   cout << "list1 = list2: " << list1 << endl;
+   */
     return 0;
 }
