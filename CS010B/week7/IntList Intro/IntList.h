@@ -7,12 +7,13 @@ using namespace std;
 /* Node Structure */
 // Each node claims 2 blocks of memory allocating:
 //    1. A stored integer value
-//    2. A pointer address for next node
+//    2. A pointer address for next node's integer
+//
 // The nodes constructor takes in an integer value 
 // and automatically assigns the next node as null
 // unless otherwise assigned to a new node structure
-//        node1           node2
-//     | 2 | node2 | -> | 5 | nullptr | 
+//      node1   ptr        node2    ptr
+//     |  2  | node2 | -> |  5  | nullptr | 
 // Often this data structure is depicted as a staircase
 struct IntNode {
     int value;
