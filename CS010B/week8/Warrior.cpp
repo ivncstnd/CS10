@@ -5,10 +5,11 @@
 using namespace std;
 
 Warrior::Warrior(const string &name, double health, double attackStrength, const string &allegiance) 
-: Character(WARRIOR, name, health, attackStrength), allegiance(allegiance)
+    : Character(WARRIOR, name, health, attackStrength), allegiance(allegiance)
 {}
 
 void Warrior::attack(Character &opp) {
+    // Check if Warrior and same allegiance
     if(opp.getType() == WARRIOR) {
         Warrior &warOpp = dynamic_cast<Warrior &>(opp);
         if(warOpp.allegiance == allegiance) {
@@ -17,6 +18,7 @@ void Warrior::attack(Character &opp) {
             return;
         }
     }
+    // Else attack based on remaining health
     double damage = (health / MAX_HEALTH) * attackStrength;
     opp.damage(damage);
     cout << "Warrior " << name << " attacks " << opp.getName() << " --- SLASH!!" << endl;
