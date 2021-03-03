@@ -21,7 +21,7 @@ void IntList::push_front(int val) {
    This function does NOT output a newline or space at the end.
 */
 ostream & operator<<(ostream & out, const IntList & list) {
-   if(list.head == 0) {
+   if(!list.head) {
       return out;
    }
    operator<<(out, list.head);
@@ -32,7 +32,7 @@ ostream & operator<<(ostream & out, const IntList & list) {
    Otherwise returns false.
 */
 bool IntList::exists(int value) const {
-   if(head == 0) {
+   if(!head) {
       return false;
    }
    if(head -> value == value) {
@@ -42,7 +42,7 @@ bool IntList::exists(int value) const {
 }
 
 bool IntList::exists(IntNode *node, int value) const {
-   if (node == 0) {
+   if (!node) {
       return false;
    }
    if(node -> value == value) {
@@ -52,11 +52,11 @@ bool IntList::exists(IntNode *node, int value) const {
 }
 
 ostream & operator<<(ostream & out, IntNode * list) {
-   if(list == 0) {
+   if(!list) {
       return out;
    }
    out << list -> value;
-   if (list -> next != 0) {
+   if (list -> next) {
       out << " ";
    }
    operator<<(out, list -> next);
