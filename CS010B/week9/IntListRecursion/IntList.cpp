@@ -21,9 +21,6 @@ void IntList::push_front(int val) {
    This function does NOT output a newline or space at the end.
 */
 ostream & operator<<(ostream & out, const IntList & list) {
-   if(!list.head) {
-      return out;
-   }
    operator<<(out, list.head);
    return out;
 }
@@ -55,10 +52,11 @@ ostream & operator<<(ostream & out, IntNode * list) {
    if(!list) {
       return out;
    }
-   out << list -> value;
-   if (list -> next) {
-      out << " ";
+   if (!list -> next) {
+      out << list -> value;
+      return out;
    }
+   out << list -> value << " ";
    operator<<(out, list -> next);
    return out;
 }
