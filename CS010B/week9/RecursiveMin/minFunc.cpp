@@ -1,7 +1,7 @@
 #include "minFunc.h"
 const int * min(const int arr[], int arrSize) {
     // Base Case
-    if (arrSize == 1) {
+    if (arrSize <= 1) {
         return &arr[0];
     }
     /**
