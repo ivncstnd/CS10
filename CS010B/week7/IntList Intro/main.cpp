@@ -3,195 +3,7 @@
 using namespace std;
 
 int main() {
-    /*
-    {
-        cout << "\nlist1 constructor called" << endl;
-        IntList list1;
-        cout << "pushfront 10" << endl;
-        list1.push_front(10);
-        cout << "pushfront 20" << endl;
-        list1.push_front(20);
-        cout << "pushfront 30" << endl;
-        list1.push_front(30);
-        cout << "list1: " << list1 << endl;
-        cout << "pop" << endl;
-        list1.pop_front();
-        cout << "list1: " << list1 << endl;
-        cout << "pop" << endl;
-        list1.pop_front();
-        cout << "list1: " << list1 << endl;
-        cout << "pop" << endl;
-        list1.pop_front();
-        cout << "list1: " << list1 << endl;
-        cout << "pushfront 100" << endl;
-        list1.push_front(100);
-        cout << "pushfront 200" << endl;
-        list1.push_front(200);
-        cout << "pushfront 300" << endl;
-        list1.push_front(300);
-        cout << "list1: " << list1 << endl;
-        cout << "list1 front: " << list1.front() << endl;
-        cout << "list1 back: " << list1.back() << endl;
-        IntList list3(list1);
-        cout << "list3: " << list3 << endl;
-        cout << "pushfront 400" << endl;
-        list3.push_front(400);
-        cout << "list3: " << list3 << endl;
-        cout << "list1: " << list1 << endl;
-        cout << endl;
-        cout << "Calling list1 & list3 destructor..." << endl;
-        
-    }
-    cout << "list1 & list3 destructor returned" << endl;
-
-    {
-        cout << "\nlist2 constructor called" << endl;
-        IntList list2;
-        if (list2.empty()) 
-            cout << "list2 is empty" << endl;
-        cout << "\nCalling list2 destructor..." << endl;
-   }
-   cout << "list2 destructor returned" << endl;
-   */
-    /*
-    cout << "\nlist1 constructor called" << endl;
-    IntList list1;
-    list1.push_front(1);
-    list1.push_front(2);
-    cout << "list1: " << list1 << endl;
-    cout << "\nlist2 constructor called" << endl;
-    IntList list2;
-    cout << "list2 = list1" << endl;
-    list2 = list1;
-    cout << "list2: " << list2 << endl;
-    list2.push_front(1);
-    list2.push_front(2);
-    cout << "list2: " << list2 << endl;
-    cout << "list1 = list2" << endl;
-    list1 = list2;
-    cout << "list1: " << list1 << endl;
-    list1.push_front(3);
-    list1.push_back(4);
-    cout << "list1: " << list1 << endl;
-    */
-   /*
-    cout << "\nlist1 constructor called" << endl;
-    IntList list1;
-    cout << "list 1 push front two nodes" << endl;
-    list1.push_front(2);
-    list1.push_front(1);
-    cout << "list1: " << list1 << endl;
-    cout << "list1 push back" << endl;
-    list1.push_back(3);
-    cout << "list1: " << list1 << endl;
-    cout << "list1 push front / back" << endl;
-    list1.push_front(0);
-    list1.push_back(4);
-    cout << "list1: " << list1 << endl;
-    cout << "\nlist2 constructor called" << endl;
-    IntList list2;
-    list2.push_front(-1);
-    list2.push_back(5);
-    cout << "list2: " << list2 << endl;
-    cout << "list2 = list1" << endl;
-    list2 = list1;
-    cout << "list2: " << list2 << endl;
-    cout << "list2 push front / back" << endl;
-    list2.push_front(-1);
-    list2.push_back(5);
-    cout << "list2: " << list2 << endl;
-    cout << "list1: " << list1 << endl;
-    */
-
-   /*
-    cout << "\nlist1 constructor called" << endl;
-    IntList list1;
-    cout << "\nlist2 constructor called" << endl;
-    IntList list2(list1);
-    cout << "list2: " << list2 << endl;
-    cout << "list1: " << list1 << endl;
-    */
-   
-    /*
-    cout << "\nlist1 constructor called" << endl;
-    IntList list1;
-    list1.push_front(0);
-    list1.push_front(5);
-    list1.push_front(20);
-    list1.push_back(50);
-    cout << "list1: " << list1 << endl;
-    cout << "\nlist1 clear called" << endl;
-    list1.clear();
-    if(list1.empty()) {
-        cout << "list1 is empty" << endl;
-    }
-    cout << "list1: " << list1 << endl;
-    list1.push_front(0);
-    list1.push_front(5);
-    list1.push_front(20);
-    list1.push_back(50);
-    cout << "list1: " << list1 << endl;
-    cout << "\nlist1 clear called" << endl;
-    list1.clear();
-    if(list1.empty()) {
-        cout << "list1 is empty" << endl;
-    }
-    cout << "\nlist1 clear called" << endl;
-    list1.clear();
-    if(list1.empty()) {
-        cout << "list1 is empty" << endl;
-    }
-    */
-
-   /*
-    cout << "\nlist1 constructor called" << endl;
-    IntList list1;
-    //list1.insert_ordered(6);
-    //cout << "list1: " << list1 << endl;
-    list1.push_front(0);
-    list1.push_back(5);
-    cout << "list1: " << list1 << endl;
-    list1.insert_ordered(1);
-    list1.insert_ordered(-1);
-    list1.insert_ordered(7);
-    list1.insert_ordered(12);
-    cout << "list1: " << list1 << endl;
-    list1.insert_ordered(6);
-    cout << "list1: " << list1 << endl;
-    list1.insert_ordered(2);
-    cout << "list1: " << list1 << endl;
-    IntList list2;
-    cout << "list2 = list1" << endl;
-    list2 = list1;
-    cout << "\nlist1 clear called" << endl;
-    list1.clear();
-    if(list1.empty()) {
-        cout << "list1 is empty" << endl;
-    }
-    cout << "\nlist1 clear called" << endl;
-    list1.clear();
-    if(list1.empty()) {
-        cout << "list1 is empty" << endl;
-    }
-    cout << "list1: " << list1 << endl;
-    cout << "list2: " << list2 << endl;
-    */
-    /*
-    cout << "\nlist1 constructor called" << endl;
-    IntList list1;
-    list1.push_back(5);
-    list1.push_back(1);
-    list1.push_back(1);
-    list1.push_back(1);
-    list1.push_back(2);
-    list1.push_back(3);
-    list1.push_back(4);
-    cout << "list1: " << list1 << endl;
-    list1.remove_duplicates();
-    cout << "list1: " << list1 << endl;
-    */
-   
-       cout << "Enter a test number(1-5): ";
+   cout << "Enter a test number(1-9): ";
 	int test;
 	cin >> test;
 	cout << endl;
@@ -468,27 +280,56 @@ int main() {
    if(test == 7) {
       cout << "list8 destructor called" << endl;
    }
-   /*
-    IntList list1;
-    list1.remove_duplicates();
-    list1.back();
-    list1.front();
-    list1.pop_front();
-    list1.pop_front();
-    cout << list1 << endl;
-    */
-   
+
+   if(test == 8) {
+      cout << endl;
+      cout << "list9 constructor called" << endl;
+      IntList list9;
+      cout << "list9 push front 5 nodes" << endl;
+      list9.push_front(1);
+      list9.push_front(1);
+      list9.push_front(5);
+      list9.push_front(1);
+      list9.push_front(3);
+      cout << "list9: " << list9 << endl;
+      cout << endl;
+      cout << "list10 copy constructor called" << endl;
+      IntList list10(list9);
+      cout << "list10: " << list10 << endl;
+      cout << endl;
+      cout << "list10 push front 5 nodes" << endl;
+      list10.push_front(2);
+      list10.push_front(3);
+      list10.push_front(7);
+      list10.push_front(-5);
+      list10.push_front(10);
+      cout << endl;
+      cout << "list9: " << list9 << endl;
+      cout << "list10: " << list10 << endl;
+      cout << endl;
+   }
+   if(test == 8) {
+      cout << "list9 and list10 destructor called" << endl;
+   }
+
+   if(test == 9) {
+      cout << endl;
+      cout << "list11 constructor called" << endl;
+      IntList list11;
+      cout << "list11: " << list11 << endl;
+      cout << endl;
+      cout << "list12 copy constructor called" << endl;
+      IntList list12(list11);
+      cout << "list12: " << list12 << endl;
+      cout << endl;
+   }
+   if(test == 9) {
+      cout << "list11 and list12 destructor called" << endl;
+   }
    /*
    * Destructor will be tested by looking at code. There is no run-time 
    * test for it. Make sure your destructor actually deletes ALL nodes, not
    * just the head and/or tail.
    */
-
-  /*
-   IntList list1;
-   IntList list2;
-   list1 = list2;
-   cout << "list1 = list2: " << list1 << endl;
-   */
-    return 0;
+   return 0;
 }

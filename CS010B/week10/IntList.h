@@ -7,7 +7,7 @@ using namespace std;
 struct IntNode {
     int value;
     IntNode *next;
-    IntNode(int value)  : value(value), next(nullptr) {}
+    IntNode(int value) : value(value), next(nullptr) {}
 };
 
 class IntList {
