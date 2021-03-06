@@ -86,7 +86,7 @@ void IntList::insert_ordered(int value) {
     if(empty() || value > tail -> value) {
         push_back(value);
     }
-    else if(value < tail -> value) {
+    else if(value < head -> value) {
         push_front(value);
     }
     else {
@@ -120,14 +120,12 @@ void IntList::remove_duplicates() {
 }
 
 ostream & operator<<(ostream &out, const IntList &list) {
-    IntNode *i = list.head;
-    while(i) {                       // While not nullptr
-        if(!i -> next) {             // If the next node is nullptr
-            out << i -> value;       // Last value no space break
+    for(IntNode *i = list.head; i; i = i -> next) {
+        if(!i -> next) {
+            out << i -> value;
             return out;
-        }                               // Else output node value spaced
+        } 
         out << i -> value << " ";    
-        i = i -> next;
     }
     return out;
 }
