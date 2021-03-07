@@ -7,7 +7,7 @@ using namespace std;
 struct IntNode {
     int value;
     IntNode *next;
-    IntNode(int value)  : value(value), next(nullptr) {}
+    IntNode(int value) : value(value), next(nullptr) {}
 };
 
 class IntList {
@@ -31,11 +31,7 @@ class IntList {
         void clear();
         friend ostream & operator<<(ostream &, const IntList &);
     private:
-        // Used by selection_sort function
-        // Just have this function return nullptr if you don't use this function.
         IntNode * min(IntNode *);
-        // Used by copy constructor and/or copy assignment operator
-        // Just implement an empty function if you don't use this function.
         void copy(const IntList &);
 };
 

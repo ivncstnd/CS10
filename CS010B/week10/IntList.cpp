@@ -3,41 +3,26 @@
 
 using namespace std;
 
-IntList::IntList() {
-    head = nullptr;
-    tail = nullptr;
-}
+IntList::IntList() : head(nullptr), tail(nullptr) {}
 
 IntList::IntList(const IntList &cpy) {
-    if(!cpy.empty()) {
-       for(IntNode *i = cpy.head; i; i = i -> next) {
-           push_back(i -> value);
-       }
-    }
-    else {
-        head = nullptr;
-        tail = nullptr;
-    } 
+    head = nullptr;
+    tail = nullptr;
+    copy(cpy);
 }
 
 IntList & IntList::operator=(const IntList &cpy) {
     if(this != &cpy) {
         clear();
-        if(!cpy.empty()) {
-            for(IntNode *i = cpy.head; i; i = i -> next) {
-                push_back(i -> value);
-            }
-        }
+        copy(cpy);
     }
     return *this;
 }
 
 IntList::~IntList() {
-    IntNode *i = head;
-    while(i) {
+    for(IntNode *i = head; i; i = head -> next) {
         head = head -> next;
         delete i;
-        i = head;
     }
 }
 
@@ -90,12 +75,7 @@ void IntList::pop_front() {
 
 void IntList::selection_sort() {
     for(IntNode *i = head; i; i = i -> next) { 
-        IntNode *minimumNode = i;
-        for(IntNode *j = i; j; j = j -> next) {
-            if(minimumNode -> value > j -> value) {
-                minimumNode = j;
-            }
-        }
+        IntNode *minimumNode = min(i);
         IntNode *temp = new IntNode(i -> value);
         i -> value = minimumNode -> value;
         minimumNode -> value = temp -> value;
@@ -106,15 +86,15 @@ void IntList::insert_ordered(int value) {
     if(empty() || value > tail -> value) {
         push_back(value);
     }
-    else if(value < tail -> value) {
+    else if(value < head -> value) {
         push_front(value);
     }
     else {
-        for(IntNode *prevNode = head; prevNode -> next; prevNode = prevNode -> next) {
-            if(prevNode -> next -> value >= value) {
+        for(IntNode *prev = head; prev -> next; prev = prev -> next) {
+            if(prev -> next -> value >= value) {
                 IntNode *node = new IntNode(value);
-                node -> next = prevNode -> next;
-                prevNode -> next = node;
+                node -> next = prev -> next;
+                prev -> next = node;
                 return;
             }
         }
@@ -139,15 +119,13 @@ void IntList::remove_duplicates() {
     }
 }
 
-ostream & operator<<(ostream & out, const IntList & list) {
-    IntNode* temp = list.head;
-    while(temp) {                       // While not nullptr
-        if(!temp -> next) {             // If the next node is nullptr
-            out << temp -> value;       // Last value no space break
+ostream & operator<<(ostream &out, const IntList &list) {
+    for(IntNode *i = list.head; i; i = i -> next) {
+        if(!i -> next) {
+            out << i -> value;
             return out;
-        }                               // Else output node value spaced
-        out << temp -> value << " ";    
-        temp = temp -> next;
+        } 
+        out << i -> value << " ";    
     }
     return out;
 }
@@ -160,12 +138,21 @@ void IntList::clear() {
     }
 }
 
-/*
-void copy(const IntList &cpy) {
+IntNode * IntList::min(IntNode * index) {
+    IntNode *minimumNode = index;
+    for(IntNode *j = index; j; j = j -> next) {
+        if(minimumNode -> value > j -> value) {
+            minimumNode = j;
+        }
+    }
+    return minimumNode;
+}
+
+void IntList::copy(const IntList &cpy) {
     if(!cpy.empty()) {
-            for(IntNode *i = cpy.head; i; i = i -> next) {
-                push_back(i -> value);
+        for(IntNode *i = cpy.head; i; i = i -> next) {
+            push_back(i -> value);
         }
     }
 }
-*/
+

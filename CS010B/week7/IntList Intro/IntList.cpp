@@ -34,11 +34,17 @@ IntList::IntList(const IntList &cpy) {
 // Deleting the list requires iterating through each element
 // and deleting the element, freeing one by one.
 IntList::~IntList() {
+    /*
     IntNode *i = head;
     while(i) {// While the iterator is not nullptr
         head = head -> next;
         delete i;
         i = head;
+    }
+    */
+    for(IntNode *i = head; i; i = head -> next) {
+        head = head -> next;
+        delete i;
     }
 }
 
