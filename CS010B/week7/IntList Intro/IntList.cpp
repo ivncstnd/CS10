@@ -197,6 +197,7 @@ IntList & IntList::operator=(const IntList & rhs) {
 // Iterates through the list and outputs the value at the node
 // if the tail is found, output the last node's value no whitespace
 // and return the list
+/*
 ostream & operator<<(ostream & out, const IntList & list) {
     IntNode* temp = list.head;
     while(temp) {                       // While not nullptr
@@ -209,3 +210,4 @@ ostream & operator<<(ostream & out, const IntList & list) {
     }
     return out;
 }
+*/
