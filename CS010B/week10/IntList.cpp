@@ -20,10 +20,11 @@ IntList & IntList::operator=(const IntList &cpy) {
 }
 
 IntList::~IntList() {
-    for(IntNode *i = head; i; i = head -> next) {
+    for(IntNode *i = head; i; i = head) {
         head = head -> next;
         delete i;
     }
+    head = nullptr;
 }
 
 const int & IntList::front() const {

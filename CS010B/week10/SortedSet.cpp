@@ -12,7 +12,9 @@ SortedSet::SortedSet(const IntList & cpy) : IntList(cpy) {
     selection_sort();
 }
 
-SortedSet::~SortedSet() {}
+SortedSet::~SortedSet() {
+    
+}
 
 bool SortedSet::in(int value) const {
     for(IntNode *i = head; i; i = i -> next) {
