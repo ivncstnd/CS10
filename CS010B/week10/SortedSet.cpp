@@ -12,9 +12,7 @@ SortedSet::SortedSet(const IntList & cpy) : IntList(cpy) {
     selection_sort();
 }
 
-SortedSet::~SortedSet() {
-    
-}
+SortedSet::~SortedSet() {}
 
 bool SortedSet::in(int value) const {
     for(IntNode *i = head; i; i = i -> next) {
@@ -25,77 +23,57 @@ bool SortedSet::in(int value) const {
     return false;
 }
 
+SortedSet SortedSet::operator|(const SortedSet &set) {
+    SortedSet newSet;
+    if(set.head) {
+        for(IntNode *i = set.head; i; i = i -> next) {
+            newSet.add(i -> value);
+        }
+    }
+    if(head) {
+        for(IntNode *i = head; i; i = i -> next) {
+            newSet.add(i -> value);
+        }
+    }
+    return newSet;
+}
+
+SortedSet SortedSet::operator&(const SortedSet &set) {
+    SortedSet newSet;
+    if(set.head) {
+        for(IntNode *i = set.head; i; i = i -> next) {
+            if(in(i -> value)) {
+                newSet.add(i -> value);
+            }
+        }
+    }
+    return newSet;
+}
+
 void SortedSet::add(int value) {
-    /*
-    if(empty() || value > tail -> value) {
-        push_back(value);
+    if(!head) {
+        head = tail = new IntNode(value);
     }
     else if(value < head -> value) {
-        push_front(value);
+        IntNode *front = new IntNode(value);
+        front -> next = head;
+        head = front;
+    }
+    else if(value > tail -> value) {
+        IntNode *back = new IntNode(value);
+        tail -> next = back;
+        tail = back;
     }
     else {
-        for(IntNode *prev = head; prev -> next; prev = prev -> next) {
-            if(prev -> next -> value > value) {
-                IntNode *node = new IntNode(value);
-                node -> next = prev -> next;
-                prev -> next = node;
+        for(IntNode *i = head; i; i = i -> next) {
+            if(value == i -> value) {
                 return;
             }
-        }
-    }
-    */
-   if(head == 0)
-    {
-        IntList::push_front(value);
-    }
-    else if(value > tail->value)
-    {
-        IntList::push_back(value);
-    }
-    else if(value < head->value)
-    {
-        IntList::push_front(value);
-    }
-    else if(head == tail && head->value != value)
-    {
-        if(value < head->value)
-        {
-            IntList::push_front(value);
-        }
-        else
-        {
-            IntList::push_back(value);
-        }
-    }
-    else if(tail->value == value)
-    {
-        return;
-    }
-    else if(head->value == value)
-    {
-        return;
-    }
-    else
-    {
-        IntNode* temp = head;
-        IntNode* firstList;
-        while((temp != 0))
-        {
-            
-            if(temp->next->value == value)
-            {
-                break;
-            }
-            else if(value < temp->next->value)
-            {
-                firstList = temp->next;
-                temp->next = new IntNode(value);
-                temp->next->next = firstList;
-                break;
-            }
-            else
-            {
-                temp = temp->next;
+            if(i -> next -> value > value) {
+                IntNode *node = new IntNode(value);
+                node -> next = i -> next;
+                i -> next = node;
+                return;
             }
         }
     }
@@ -107,4 +85,18 @@ void SortedSet::push_front(int value) {
 
 void SortedSet::push_back(int value) {
     add(value);
+}
+
+void SortedSet::insert_ordered(int value) {
+    add(value);
+}
+
+SortedSet SortedSet::operator|=(const SortedSet &set) {
+    SortedSet newSet = operator|(set);
+    return *this = newSet;
+}
+
+SortedSet SortedSet::operator&=(const SortedSet &set) {
+    SortedSet newSet = operator&(set);
+    return *this = newSet;
 }
