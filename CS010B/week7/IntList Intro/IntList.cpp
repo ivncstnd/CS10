@@ -119,11 +119,6 @@ void IntList::insert_ordered(int value) {
                 if(node -> value > prevNode -> next -> value) { //if the value of the new node is greater than the value of the CURRENT node
                     prevNode = prevNode -> next; //proceed
                 }
-                else { //else
-                    node -> next = prevNode -> next; //point the new node to the current node
-                    prevNode -> next = node; //point the previous reference node to the new node
-                    return; //exit func
-                }
             }
         }
     }
@@ -188,7 +183,6 @@ IntList & IntList::operator=(const IntList & rhs) {
                 tail -> next = node;
                 tail = node;
                 i = i -> next;
-            } 
         } //otherwise, return empty
     }
     return *this;

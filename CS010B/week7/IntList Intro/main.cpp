@@ -427,6 +427,17 @@ int main() {
       list7 = list6;
       cout << "list7: " << list7 << endl;
       cout << endl;
+      cout << "pushfront 10" << endl;
+      list7.push_front(10);
+      cout << "pushfront 20" << endl;
+      list7.push_front(20);
+      cout << "pushfront 10" << endl;
+      list7.push_front(10);
+      cout << "pushfront 30" << endl;
+      list7.push_front(30);
+      cout << "list6: " << list6 << endl;
+      cout << "list7: " << list7 << endl;
+      cout << endl;
       cout << "clearing list6 & list7" << endl;
       list6.clear();
       list7.clear();
