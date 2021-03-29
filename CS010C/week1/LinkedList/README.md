@@ -2,10 +2,9 @@
 *You will be building a linked list. Make sure to keep track of both the head and tail nodes.*
 
 (1) Create three files to submit.
-
-Playlist.h - Class declaration
-Playlist.cpp - Class definition
-main.cpp - main() function
+- Playlist.h
+- Playlist.cpp
+- main.cpp
 
 Build the PlaylistNode class per the following specifications. 
 *Note: Some functions can initially be function stubs (empty functions), to be completed in later steps.*
