@@ -124,12 +124,12 @@ JJ234
 
 (7) Implement the "Change position of song" menu option. Prompt the user for the current position of the song and the desired new position. Valid new positions are 1 - n (the number of nodes). If the user enters a new position that is less than 1, move the node to the position 1 (the head). If the user enters a new position greater than n, move the node to position n (the tail). 6 cases will be tested:
 
-Moving the head node **(1 pt)**
-Moving the tail node **(1 pt)**
-Moving a node to the head **(1 pt)**
-Moving a node to the tail **(1 pt)**
-Moving a node up the list **(1 pt)**
-Moving a node down the list **(1 pt)**
+- Moving the head node **(1 pt)**
+- Moving the tail node **(1 pt)**
+- Moving a node to the head **(1 pt)**
+- Moving a node to the tail **(1 pt)**
+- Moving a node up the list **(1 pt)**
+- Moving a node down the list **(1 pt)**
 Ex:
 ```
 CHANGE POSITION OF SONG
