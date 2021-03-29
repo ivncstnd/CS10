@@ -1,7 +1,8 @@
 # 1.20 LAB 1 - Linked List
 *You will be building a linked list. Make sure to keep track of both the head and tail nodes.*
 
-**(1) Create three files to submit.**
+(1) Create three files to submit.
+
 Playlist.h - Class declaration
 Playlist.cpp - Class definition
 main.cpp - main() function
