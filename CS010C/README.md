@@ -1,0 +1,11 @@
+## Topics
+- Intro
+- Algorithm Analysis & Lists
+- Stacks, Queues, Exceptions, Templates
+- Trees
+- Heaps and Advanced Sorting
+- B-Trees
+- AVL Trees
+- Hash Tables
+- Graphs I
+- Graphs II
