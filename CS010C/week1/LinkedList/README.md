@@ -130,6 +130,7 @@ JJ234
 - Moving a node to the tail **(1 pt)**
 - Moving a node up the list **(1 pt)**
 - Moving a node down the list **(1 pt)**
+
 Ex:
 ```
 CHANGE POSITION OF SONG
