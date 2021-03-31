@@ -60,7 +60,7 @@ Playlist::Playlist() : head(nullptr), tail(nullptr)
 {}
 
 void Playlist::PrintPlaylist() const {
-    if(!head) {
+    if (!head) {
         cout << "Playlist is empty" << endl 
              << endl;
     } else {
@@ -75,7 +75,7 @@ void Playlist::PrintPlaylist() const {
 }
 
 void Playlist::push_back(PlaylistNode* node) {
-    if(!head) {
+    if (!head) {
         head = tail = node;
     } else {
         tail->SetNext(node);
@@ -84,20 +84,20 @@ void Playlist::push_back(PlaylistNode* node) {
 }
 
 void Playlist::RemoveSong(string UID) {
-    if(!head) {
+    if (!head) {
         cout << "Playlist is empty" << endl << endl;
     } else {
         PlaylistNode* i = head;
-        if(i->GetID() == UID) {
+        if (i->GetID() == UID) {
             head = i->GetNext();
             cout << "\"" << i->GetSongName() << "\" removed." << endl << endl;
             delete i;
         } else {
             PlaylistNode* j = nullptr;
-            for(; i->GetNext(); i = i->GetNext()) {
-                if(i->GetNext()->GetID() == UID) {
+            for (; i->GetNext(); i = i->GetNext()) {
+                if( i->GetNext()->GetID() == UID) {
                     j = i->GetNext();
-                    if(j == tail) {
+                    if (j == tail) {
                         tail = i;
                         i->SetNext(nullptr);
                     } else {
@@ -116,40 +116,49 @@ void Playlist::ChangePositon(int origPos, int newPos) {
     PlaylistNode* prevOrig = nullptr;
     PlaylistNode* currOrig = head;
     int posIndex = 1;
-    //find the node to be changed and its previous
-    while(origPos > posIndex) {
+    // find the node to be changed and its previous
+    while (origPos > posIndex && currOrig) {
         prevOrig = currOrig;
         currOrig = currOrig->GetNext();
-        ++posIndex;
-        if(prevOrig->GetNext() == tail) {
-            prevOrig = currOrig;
-            currOrig = tail;
-        }
+        posIndex++;
     }
-    PlaylistNode* prevNew = nullptr;
-    PlaylistNode* currNew = head;
-    posIndex = 1;
-    //find the new node to be inserted and its previous
-    while(newPos > posIndex) {
-        prevNew = currNew;
-        currNew = currNew->GetNext();
-        ++posIndex;
-        if(prevNew->GetNext() == tail) {
+    // readjust list accounting for ends
+    if (prevOrig) {
+        prevOrig->SetNext(currOrig->GetNext());
+    } else {
+        head = currOrig->GetNext();
+    }
+
+    if (currOrig == tail) {
+        tail = prevOrig;
+    }
+    // insert into new positon and readjust list
+    if (newPos <= 1) {
+        currOrig->SetNext(head);
+        head = currOrig;
+        cout << "\"" << currOrig->GetSongName() << "\" moved to position 1" << endl << endl;
+    } else {
+        posIndex = 2;
+        PlaylistNode* prevNew = head;
+        PlaylistNode* currNew = head->GetNext();
+        while (newPos > posIndex && currNew) {
             prevNew = currNew;
-            currNew = tail;
+            currNew = currNew->GetNext();
+            posIndex++;
         }
+        prevNew->InsertAfter(currOrig);
+        if (!currNew) {
+            tail = currOrig;
+        }
+        cout << "\"" << currOrig->GetSongName() << "\" moved to position " << posIndex << endl << endl;
     }
-    //set the previous originals pointer to the next originals node pointer then insert after the new current new node
-    prevOrig->SetNext(currOrig->GetNext());
-    //currOrig->SetNext(currNew->GetNext());
-    currNew->InsertAfter(currOrig);
-}
+ }
 
 void Playlist::PrintSpecificArtist(string AN) const {
     int pos = 0;
-    for(PlaylistNode* i = head; i; i = i->GetNext()) {
+    for (PlaylistNode* i = head; i; i = i->GetNext()) {
         ++pos;
-        if(i->GetArtistName() == AN) {
+        if (i->GetArtistName() == AN) {
             cout << pos << "." << endl;
             i->PrintPlaylistNode();
             cout << endl;
@@ -159,7 +168,7 @@ void Playlist::PrintSpecificArtist(string AN) const {
 
 void Playlist::PrintTotalTime() const {
     int totalTime = 0;
-    for(PlaylistNode* i = head; i; i = i->GetNext()) {
+    for (PlaylistNode* i = head; i; i = i->GetNext()) {
         totalTime += i->GetSongLength();
     }
     cout << "Total time: " << totalTime << " seconds" << endl << endl;
