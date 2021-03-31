@@ -8,7 +8,7 @@ void PrintMenu(string, Playlist*);
 int main() {
     string PlaylistTitle;
     Playlist* Playlist1 = new Playlist();
-    cout << "Enter playlist's title: " << endl;
+    cout << "Enter playlist's title:" << endl;
     getline(cin, PlaylistTitle);
     cout << endl;
     PrintMenu(PlaylistTitle, Playlist1);
@@ -26,9 +26,8 @@ void PrintMenu(string PlaylistTitle, Playlist* list) {
         << "t - Output total time of playlist (in seconds)" << endl
         << "o - Output full playlist" << endl
         << "q - Quit" << endl << endl
-        << "Choose an option: " << endl;
+        << "Choose an option:" << endl;
         cin >> option;
-        cout << endl;
         if (option == 'a') {
             string UID;
             string SN;
@@ -50,7 +49,19 @@ void PrintMenu(string PlaylistTitle, Playlist* list) {
             option = 'q';
             PrintMenu(PlaylistTitle, list);
         }
+        if (option == 'd') {
+            string UID;
+            cout << "REMOVE SONG" << endl;
+            cout << "Enter song's unique ID:" << endl;
+            cin.ignore();
+            getline(cin, UID);
+            cout << endl;
+            list->RemoveSong(UID);
+            option = 'q';
+            PrintMenu(PlaylistTitle, list);
+        }
         if (option == 'o') {
+            cout << PlaylistTitle << " - OUTPUT FULL PLAYLIST" << endl;
             list->PrintPlaylist();
             option = 'q';
             PrintMenu(PlaylistTitle, list);

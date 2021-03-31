@@ -34,6 +34,7 @@ class Playlist {
         Playlist();
         void PrintPlaylist() const;
         void push_back(PlaylistNode*);
+        void RemoveSong(string);
 };
 
 #endif

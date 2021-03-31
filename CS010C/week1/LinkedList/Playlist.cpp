@@ -82,3 +82,33 @@ void Playlist::push_back(PlaylistNode* node) {
         tail = node;
     }
 }
+
+void Playlist::RemoveSong(string UID) {
+    if(!head) {
+        cout << "Playlist is empty" << endl 
+             << endl;
+    } else {
+        PlaylistNode* i = head;
+        if(i->GetID() == UID) {
+            head = i->GetNext();
+            cout << "\"" << i->GetSongName() << "\" removed" << endl;
+            delete i;
+        } else {
+            PlaylistNode* j = nullptr;
+            for(; i->GetNext(); i = i->GetNext()) {
+                if(i->GetNext()->GetID() == UID) {
+                    j = i->GetNext();
+                    if(j == tail) {
+                        tail = i;
+                        i->SetNext(nullptr);
+                    } else {
+                        i->SetNext(j->GetNext());
+                    }
+                    cout << "\"" << j->GetSongName() << "\" removed" << endl;
+                    delete j;
+                    return;
+                }
+            }
+        }   
+    }
+}
