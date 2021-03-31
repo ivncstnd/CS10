@@ -21,8 +21,8 @@ PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, 
 }
 
 void PlaylistNode::InsertAfter(PlaylistNode* node) {
-    this->SetNext(node->GetNext());
-    node->SetNext(this);
+    node->SetNext(this->GetNext());
+    this->SetNext(node);
 }
 
 void PlaylistNode::SetNext(PlaylistNode* node) {
@@ -113,8 +113,36 @@ void Playlist::RemoveSong(string UID) {
 }
 
 void Playlist::ChangePositon(int origPos, int newPos) {
-    cout << "IMPLEMENT" << endl;
-    return;
+    PlaylistNode* prevOrig = nullptr;
+    PlaylistNode* currOrig = head;
+    int posIndex = 1;
+    //find the node to be changed and its previous
+    while(origPos > posIndex) {
+        prevOrig = currOrig;
+        currOrig = currOrig->GetNext();
+        ++posIndex;
+        if(prevOrig->GetNext() == tail) {
+            prevOrig = currOrig;
+            currOrig = tail;
+        }
+    }
+    PlaylistNode* prevNew = nullptr;
+    PlaylistNode* currNew = head;
+    posIndex = 1;
+    //find the new node to be inserted and its previous
+    while(newPos > posIndex) {
+        prevNew = currNew;
+        currNew = currNew->GetNext();
+        ++posIndex;
+        if(prevNew->GetNext() == tail) {
+            prevNew = currNew;
+            currNew = tail;
+        }
+    }
+    //set the previous originals pointer to the next originals node pointer then insert after the new current new node
+    prevOrig->SetNext(currOrig->GetNext());
+    //currOrig->SetNext(currNew->GetNext());
+    currNew->InsertAfter(currOrig);
 }
 
 void Playlist::PrintSpecificArtist(string AN) const {
@@ -134,5 +162,5 @@ void Playlist::PrintTotalTime() const {
     for(PlaylistNode* i = head; i; i = i->GetNext()) {
         totalTime += i->GetSongLength();
     }
-    cout << "Total time: " << totalTime << endl << endl;
+    cout << "Total time: " << totalTime << " seconds" << endl << endl;
 }
