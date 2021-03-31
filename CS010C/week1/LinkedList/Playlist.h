@@ -35,6 +35,9 @@ class Playlist {
         void PrintPlaylist() const;
         void push_back(PlaylistNode*);
         void RemoveSong(string);
+        void ChangePositon(int, int);
+        void PrintSpecificArtist(string) const;
+        void PrintTotalTime() const;
 };
 
 #endif

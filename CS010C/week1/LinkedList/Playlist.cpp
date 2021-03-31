@@ -64,12 +64,12 @@ void Playlist::PrintPlaylist() const {
         cout << "Playlist is empty" << endl 
              << endl;
     } else {
-        int intIndex = 1;
+        int pos = 1;
         for(PlaylistNode* i = head; i; i = i->GetNext()) {
-            cout << intIndex << "." << endl;
+            cout << pos << "." << endl;
             i->PrintPlaylistNode();
             cout << endl;
-            ++intIndex;
+            ++pos;
         }
     }
 }
@@ -85,13 +85,12 @@ void Playlist::push_back(PlaylistNode* node) {
 
 void Playlist::RemoveSong(string UID) {
     if(!head) {
-        cout << "Playlist is empty" << endl 
-             << endl;
+        cout << "Playlist is empty" << endl << endl;
     } else {
         PlaylistNode* i = head;
         if(i->GetID() == UID) {
             head = i->GetNext();
-            cout << "\"" << i->GetSongName() << "\" removed" << endl;
+            cout << "\"" << i->GetSongName() << "\" removed." << endl << endl;
             delete i;
         } else {
             PlaylistNode* j = nullptr;
@@ -104,11 +103,36 @@ void Playlist::RemoveSong(string UID) {
                     } else {
                         i->SetNext(j->GetNext());
                     }
-                    cout << "\"" << j->GetSongName() << "\" removed" << endl;
+                    cout << "\"" << j->GetSongName() << "\" removed." << endl << endl;
                     delete j;
                     return;
                 }
             }
         }   
     }
+}
+
+void Playlist::ChangePositon(int origPos, int newPos) {
+    cout << "IMPLEMENT" << endl;
+    return;
+}
+
+void Playlist::PrintSpecificArtist(string AN) const {
+    int pos = 0;
+    for(PlaylistNode* i = head; i; i = i->GetNext()) {
+        ++pos;
+        if(i->GetArtistName() == AN) {
+            cout << pos << "." << endl;
+            i->PrintPlaylistNode();
+            cout << endl;
+        }
+    }
+}
+
+void Playlist::PrintTotalTime() const {
+    int totalTime = 0;
+    for(PlaylistNode* i = head; i; i = i->GetNext()) {
+        totalTime += i->GetSongLength();
+    }
+    cout << "Total time: " << totalTime << endl << endl;
 }

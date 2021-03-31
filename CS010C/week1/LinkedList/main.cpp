@@ -55,8 +55,38 @@ void PrintMenu(string PlaylistTitle, Playlist* list) {
             cout << "Enter song's unique ID:" << endl;
             cin.ignore();
             getline(cin, UID);
-            cout << endl;
             list->RemoveSong(UID);
+            option = 'q';
+            PrintMenu(PlaylistTitle, list);
+        }
+        if (option == 'c') {
+            int origPos = 0;
+            int newPos = 0;
+            cout << "CHANGE POSITION OF SONG" << endl;
+            cout << "Enter song's current position:" << endl;
+            cin.ignore();
+            cin >> origPos;
+            cout << "Enter new position for song:" << endl;
+            cin >> newPos;
+            list->ChangePositon(origPos, newPos);
+            option = 'q';
+            PrintMenu(PlaylistTitle, list);
+
+        }
+        if (option == 's') {
+            string AN;
+            cout << "OUTPUT SONGS BY SPECIFIC ARTIST" << endl;
+            cout << "Enter artist's name:" << endl;
+            cin.ignore();
+            getline(cin, AN);
+            cout << endl;
+            list->PrintSpecificArtist(AN);
+            option = 'q';
+            PrintMenu(PlaylistTitle, list);
+        }
+        if (option == 't') {
+            cout << "OUTPUT TOTAL TIME OF PLAYLIST (IN SECONDS)" << endl;
+            list->PrintTotalTime();
             option = 'q';
             PrintMenu(PlaylistTitle, list);
         }
