@@ -6,6 +6,7 @@ using namespace std;
 #ifndef __PLAYLIST_H__
 #define __PLAYLIST_H__
 
+// Data Type (Node)
 class PlaylistNode {
     private:
         string uniqueID;
@@ -23,9 +24,10 @@ class PlaylistNode {
         string GetArtistName() const;
         int GetSongLength() const;
         PlaylistNode* GetNext() const;
-        void PrintPlaylistNode();
+        void PrintPlaylistNode() const;
 };
 
+// Data Structure (Singly Linked List)
 class Playlist {
     private:
         PlaylistNode* head;

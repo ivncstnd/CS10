@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/* Constructors */
 PlaylistNode::PlaylistNode() {
     this->uniqueID = "none";
     this->songName = "none";
@@ -20,6 +21,7 @@ PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, 
     this->nextNodePtr = 0;
 }
 
+/* Mutators */
 void PlaylistNode::InsertAfter(PlaylistNode* node) {
     node->SetNext(this->GetNext());
     this->SetNext(node);
@@ -29,6 +31,7 @@ void PlaylistNode::SetNext(PlaylistNode* node) {
     nextNodePtr = node;
 }
 
+/* Accessors */
 string PlaylistNode::GetID() const {
     return uniqueID;
 }
@@ -49,31 +52,18 @@ PlaylistNode* PlaylistNode::GetNext() const {
     return nextNodePtr;
 }
 
-void PlaylistNode::PrintPlaylistNode() {
+void PlaylistNode::PrintPlaylistNode() const {
     cout << "Unique ID: " << uniqueID << endl
          << "Song Name: " << songName << endl
          << "Artist Name: " << artistName << endl
          << "Song Length (in seconds): " << songLength << endl;
 }
 
+/* Constructor */
 Playlist::Playlist() : head(nullptr), tail(nullptr) 
 {}
 
-void Playlist::PrintPlaylist() const {
-    if (!head) {
-        cout << "Playlist is empty" << endl 
-             << endl;
-    } else {
-        int pos = 1;
-        for(PlaylistNode* i = head; i; i = i->GetNext()) {
-            cout << pos << "." << endl;
-            i->PrintPlaylistNode();
-            cout << endl;
-            ++pos;
-        }
-    }
-}
-
+/* Mutators */
 void Playlist::push_back(PlaylistNode* node) {
     if (!head) {
         head = tail = node;
@@ -152,7 +142,23 @@ void Playlist::ChangePositon(int origPos, int newPos) {
         }
         cout << "\"" << currOrig->GetSongName() << "\" moved to position " << posIndex << endl << endl;
     }
- }
+}
+
+/* Accessors */
+void Playlist::PrintPlaylist() const {
+    if (!head) {
+        cout << "Playlist is empty" << endl 
+             << endl;
+    } else {
+        int pos = 1;
+        for(PlaylistNode* i = head; i; i = i->GetNext()) {
+            cout << pos << "." << endl;
+            i->PrintPlaylistNode();
+            cout << endl;
+            ++pos;
+        }
+    }
+}
 
 void Playlist::PrintSpecificArtist(string AN) const {
     int pos = 0;

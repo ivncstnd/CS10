@@ -71,7 +71,6 @@ void PrintMenu(string PlaylistTitle, Playlist* list) {
             list->ChangePositon(origPos, newPos);
             option = 'q';
             PrintMenu(PlaylistTitle, list);
-
         }
         if (option == 's') {
             string AN;
