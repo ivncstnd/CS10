@@ -161,14 +161,14 @@ void Playlist::PrintPlaylist() const {
 }
 
 void Playlist::PrintSpecificArtist(string AN) const {
-    int pos = 0;
+    int pos = 1;
     for (PlaylistNode* i = head; i; i = i->GetNext()) {
-        ++pos;
         if (i->GetArtistName() == AN) {
             cout << pos << "." << endl;
             i->PrintPlaylistNode();
             cout << endl;
         }
+         ++pos;
     }
 }
 
