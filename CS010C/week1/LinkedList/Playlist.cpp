@@ -139,6 +139,7 @@ void Playlist::ChangePositon(int origPos, int newPos) {
         prevNew->InsertAfter(currOrig);
         if (!currNew) {
             tail = currOrig;
+            tail->SetNext(nullptr);
         }
         cout << "\"" << currOrig->GetSongName() << "\" moved to position " << posIndex << endl << endl;
     }
