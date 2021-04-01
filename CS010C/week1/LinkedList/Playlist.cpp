@@ -70,6 +70,7 @@ void Playlist::push_back(PlaylistNode* node) {
     } else {
         tail->SetNext(node);
         tail = node;
+        tail->SetNext(nullptr);
     }
 }
 
