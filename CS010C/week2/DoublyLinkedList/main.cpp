@@ -23,6 +23,16 @@ int main() {
         cout << "list1 reversed: ";
         list1.printReverse();
         cout << endl << endl;
+        cout << "pop front" << endl;
+        list1.pop_front();
+        cout << "list1: " << list1 << endl;
+        cout << "pop front" << endl;
+        list1.pop_front();
+        cout << "list1: " << list1 << endl;
+        cout << "pop front" << endl;
+        list1.pop_front();
+        cout << "list1: " << list1 << endl;
+        cout << endl;
     }
     if (test == 2) {
         cout << "list2 constructor called" << endl;
@@ -39,6 +49,16 @@ int main() {
         cout << "list2 reversed: ";
         list2.printReverse();
         cout << endl << endl;
+        cout << "pop back" << endl;
+        list2.pop_back();
+        cout << "list2: " << list2 << endl;
+        cout << "pop back" << endl;
+        list2.pop_back();
+        cout << "list2: " << list2 << endl;
+        cout << "pop back" << endl;
+        list2.pop_back();
+        cout << "list2: " << list2 << endl;
+        cout << endl;
     }
     return 0;
 }

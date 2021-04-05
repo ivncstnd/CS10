@@ -10,7 +10,12 @@ IntList::IntList() : dummyHead(new IntNode(0)), dummyTail(new IntNode(0)) {
 }
 
 IntList::~IntList() {
-    cout << "All nodes deleted" << endl;
+    while (dummyHead) {
+        IntNode* i = dummyHead;
+        dummyHead = dummyHead->next;
+        delete i;
+    }
+    cout << "successfully deleted list" << endl;
 }
 
 void IntList::push_front(int value) {
@@ -28,6 +33,15 @@ void IntList::push_front(int value) {
     }
 }
 
+void IntList::pop_front() {
+    if (!empty()) {
+        IntNode* node = dummyHead->next;
+        dummyHead->next = dummyHead->next->next;
+        dummyHead->next->prev = dummyHead;
+        delete node;
+    }
+}
+
 void IntList::push_back(int value) {
     IntNode* node = new IntNode(value);
     if (empty()) {
@@ -40,6 +54,15 @@ void IntList::push_back(int value) {
         node->next = dummyTail;
         node->prev->next = node;
         dummyTail->prev = node;
+    }
+}
+
+void IntList::pop_back() {
+    if (!empty()) {
+        IntNode* node = dummyTail->prev;
+        dummyTail->prev = dummyTail->prev->prev;
+        dummyTail->prev->next = dummyTail;
+        delete node;
     }
 }
 
