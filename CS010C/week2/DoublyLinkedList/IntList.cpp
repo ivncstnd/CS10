@@ -15,7 +15,6 @@ IntList::~IntList() {
         dummyHead = dummyHead->next;
         delete i;
     }
-    cout << "successfully deleted list" << endl;
 }
 
 void IntList::push_front(int value) {
