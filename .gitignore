@@ -1,4 +1,4 @@
 .DS_Store
 *.txt
 *.out
-.vscode/settings.json
+.vscode
