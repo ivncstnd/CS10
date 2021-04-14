@@ -18,7 +18,6 @@ vector<string> phraseVector();
 
 int main () {
     //Part A
-
     srand(time(0));
     //Int Vector
     cout << endl << "Int Vector" << endl;
@@ -50,7 +49,6 @@ int main () {
     cout << endl;
 
     //Part B
-    /*
     srand(time(0));
     vector<char> vals = createVector();
     char curChar;
@@ -66,7 +64,6 @@ int main () {
         }
         cout << "Element located at " << index << ": is " << curChar << endl;
     }
-    */
     return 0;
 }
 
