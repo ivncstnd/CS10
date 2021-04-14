@@ -50,6 +50,7 @@ int main () {
     cout << endl;
 
     //Part B
+    /*
     srand(time(0));
     vector<char> vals = createVector();
     char curChar;
@@ -65,6 +66,7 @@ int main () {
         }
         cout << "Element located at " << index << ": is " << curChar << endl;
     }
+    */
     return 0;
 }
 
@@ -88,7 +90,7 @@ vector<string> phraseVector() {
     vector<string> vals;
     for (int i = 0; i < vecSize; i++) {
         for (int j = 0; j < 3; j++) {
-            code = rand() % 25 + 65;
+            code = rand() % 26 + 65;
             phrase += (char)code;
         }
         vals.push_back(phrase);
