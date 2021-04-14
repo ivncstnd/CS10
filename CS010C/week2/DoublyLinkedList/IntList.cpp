@@ -19,17 +19,10 @@ IntList::~IntList() {
 
 void IntList::push_front(int value) {
     IntNode* node = new IntNode(value);
-    if (empty()) {
-        dummyHead->next = node;
-        dummyTail->prev = node;
-        node->next = dummyTail;
-        node->prev = dummyHead;
-    } else {
-        node->next = dummyHead->next;
-        dummyHead->next = node;
-        node->next->prev = node;
-        node->prev = dummyHead;
-    }
+    node->next = dummyHead->next;
+    dummyHead->next = node;
+    node->next->prev = node;
+    node->prev = dummyHead;
 }
 
 void IntList::pop_front() {
@@ -43,17 +36,10 @@ void IntList::pop_front() {
 
 void IntList::push_back(int value) {
     IntNode* node = new IntNode(value);
-    if (empty()) {
-        dummyHead->next = node;
-        dummyTail->prev = node;
-        node->next = dummyTail;
-        node->prev = dummyHead;
-    } else {
-        node->prev = dummyTail->prev;
-        node->next = dummyTail;
-        node->prev->next = node;
-        dummyTail->prev = node;
-    }
+    node->prev = dummyTail->prev;
+    node->next = dummyTail;
+    node->prev->next = node;
+    dummyTail->prev = node;
 }
 
 void IntList::pop_back() {
