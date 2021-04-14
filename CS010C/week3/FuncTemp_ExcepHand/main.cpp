@@ -18,7 +18,7 @@ vector<string> phraseVector();
 
 int main () {
     //Part A
-    
+
     srand(time(0));
     //Int Vector
     cout << endl << "Int Vector" << endl;
@@ -80,6 +80,7 @@ vector<char> createVector() {
     return vals;
 }
 
+/* Not part of lab - Vector string helper func */
 vector<string> phraseVector() {
     int vecSize = 10;
     int code;
