@@ -1,3 +1,16 @@
+/***
+ * This program uses a breadth-first search using a queue of string stacks.
+ * The program starts by enqueuing the first string stack node labeled start.
+ * Next the program searches the entire dictionary list searching for a
+ * string that contains only one character change. When found, it copies
+ * the previous string stack and appends the new string to the stack.
+ * If the string found is the goal state, print the stack. Otherwise, 
+ * append current stack to the queue and label the node discovered by
+ * removing it from the list. Once an iteration through the list is complete,
+ * pop the top stack from the queue and repeat iterating through the list
+ * until goal state is achived or all stacks are popped.
+ */
+
 #include "WordLadder.h"
 
 using namespace std;
