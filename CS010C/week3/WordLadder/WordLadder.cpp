@@ -25,6 +25,8 @@ void WordLadder::outputLadder(const string &start, const string &end, const stri
     if (start == end) {
         exit(0);
     }
+    ofstream outFS;
+    outFS.open(outputFile);
     stack<string> currStep;
     currStep.push(start);
     queue<stack<string> > ladder;
@@ -45,8 +47,6 @@ void WordLadder::outputLadder(const string &start, const string &end, const stri
                         finalLadder.push(nextStep.top());
                         nextStep.pop();
                     }
-                    ofstream outFS;
-                    outFS.open(outputFile);
                     if (!finalLadder.empty()) {
                         if (!outFS.is_open()) {
                             cout << "Error opening " << outputFile << endl;
@@ -63,15 +63,18 @@ void WordLadder::outputLadder(const string &start, const string &end, const stri
                 ladder.push(nextStep);
                 it = dict.erase(it);
                 it--;
+            } else {
+                cout << "Word passed in does not exist in the dictionary." << endl;
+                return;
             }
         }
         ladder.pop();
     }
     if (ladder.empty()) {
-        cout << "No Word Ladder found." << endl;
-        exit(0);
+        outFS << "No Word Ladder Found." << endl;
+        outFS.close(); 
     }
-    return;
+    exit(0);
 } 
 
 bool WordLadder::stringsOneOff(const string &x, const string &y) const {
