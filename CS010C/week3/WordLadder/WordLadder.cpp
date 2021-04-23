@@ -10,7 +10,7 @@ WordLadder::WordLadder(const string &dictFile) {
         return;
     }
     string curr = "";
-    while (!(inFS.eof())) {
+    while (!inFS.eof()) {
         inFS >> curr;
         if (curr.size() != 5) {
             cout << "word does not have a size of 5" << endl;
@@ -19,7 +19,6 @@ WordLadder::WordLadder(const string &dictFile) {
         dict.push_back(curr);
     }
     inFS.close();
-    return;
 }
 
 void WordLadder::outputLadder(const string &start, const string &end, const string &outputFile) {
@@ -58,8 +57,6 @@ void WordLadder::outputLadder(const string &start, const string &end, const stri
                             finalLadder.pop();
                         }
                         outFS.close();
-                    } else {
-                        cout << "No Word Ladder found." << endl;
                     }
                     exit(0);
                 }
@@ -70,7 +67,12 @@ void WordLadder::outputLadder(const string &start, const string &end, const stri
         }
         ladder.pop();
     }
-}
+    if (ladder.empty()) {
+        cout << "No Word Ladder found." << endl;
+        exit(0);
+    }
+    return;
+} 
 
 bool WordLadder::stringsOneOff(const string &x, const string &y) const {
     int offsetCount = 0;
