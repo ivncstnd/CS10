@@ -33,6 +33,8 @@ class WordLadder {
         * to the file, the message, "No Word Ladder Found."
         */
         void outputLadder(const string &, const string &, const string &);
+    private:
+        bool stringsOneOff(const string &, const string &) const;
 };
 
 #endif
