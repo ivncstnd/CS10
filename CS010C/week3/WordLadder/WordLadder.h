@@ -35,6 +35,8 @@ class WordLadder {
         void outputLadder(const string &, const string &, const string &);
     private:
         bool stringsOneOff(const string &, const string &) const;
+        bool stringExists(const string &);
+        
 };
 
 #endif
