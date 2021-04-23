@@ -1,4 +1,5 @@
 /***
+ * SOLUTION STATEMENT:
  * This program uses a breadth-first search using a queue of string stacks.
  * The program starts by enqueuing the first string stack node labeled start.
  * Next the program searches the entire dictionary list searching for a
