@@ -1,9 +1,13 @@
+#include "Node.h"
+
+using namespace std;
+
 #ifndef __BSTREE_H__
 #define __BSTREE_H__
 
 class BSTree {
     private:
-        // Node *root;
+        Node *root;
     public:
         /* Constructors */
         /* Default constructor */
