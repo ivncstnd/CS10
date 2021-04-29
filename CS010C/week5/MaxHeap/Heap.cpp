@@ -66,7 +66,6 @@ void Heap::trickleDown(int index) {
     if (currMax != index) {
         PrintJob* temp = arr[index];
         arr[index] = arr[currMax];
-        arr[currMax] = temp;
         trickleDown(currMax);
     }
 }
@@ -74,7 +73,7 @@ void Heap::trickleDown(int index) {
 /* If the current index is greater than its parent index, 
 swap the 2 indexs and recurse until no longer true. */
 void Heap::percolateUp(int index) {
-    if(index && arr[index]->getPriority() > arr[parentIndex(index)]->getPriority()) {
+    if(index > 0 && arr[index]->getPriority() > arr[parentIndex(index)]->getPriority()) {
         PrintJob *temp = arr[parentIndex(index)];
         arr[parentIndex(index)] = arr[index];
         arr[index] = temp;
