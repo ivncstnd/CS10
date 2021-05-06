@@ -41,7 +41,7 @@ class arithmeticExpression{
     void postfix();
 
     /* Calls the recursive visualizeTree function and generates the .png file using system call. */
-    //void visualizeTree(const string &);
+    void visualizeTree(const string &);
 
  private:
     /* Helper function that returns an integer according to
@@ -67,6 +67,6 @@ class arithmeticExpression{
     void postfix(TreeNode *);
 
     /* Helper function for generating the dotty file. This is a recursive function. */
-    //void visualizeTree(ofstream &, TreeNode *);
+    void visualizeTree(ofstream &, TreeNode *);
 };
 #endif

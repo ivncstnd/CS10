@@ -51,6 +51,20 @@ void arithmeticExpression::postfix() {
     postfix(root);
 }
 
+void arithmeticExpression::visualizeTree(const string &outputFilename) {
+    ofstream outFS(outputFilename.c_str());
+    if(!outFS.is_open()){
+        cout<<"Error opening "<< outputFilename<<endl;
+        return;
+    }
+    outFS<<"digraph G {"<<endl;
+    visualizeTree(outFS,root);
+    outFS<<"}";
+    outFS.close();
+    string jpgFilename = outputFilename.substr(0,outputFilename.size()-4)+".jpg";
+    string command = "dot -Tjpg " + outputFilename + " -o " + jpgFilename;
+    system(command.c_str());
+}
 
 int arithmeticExpression::priority(char op) {
     int priority = 0;
@@ -138,19 +152,29 @@ void arithmeticExpression::postfix(TreeNode *node) {
     }
 }
 
-/*
-void arithmeticExpression::visualizeTree(const string &outputFilename) {
-    ofstream outFS(outputFilename.c_str());
-    if(!outFS.is_open()){
-        cout<<"Error opening "<< outputFilename<<endl;
-        return;
+void arithmeticExpression::visualizeTree(ofstream &output, TreeNode* node) {
+    if (node) {
+        if (node->left) {
+            output << "\t" << node->key << " [label = \"" << node->data << "\"];" << endl;
+            output << "\t" << node->left->key << " [label = \"" << node->left->data << "\"];" << endl;
+            output << "\t" << node->key << " -> " << node->left->key << endl;
+        }
+        if (node->right) {
+            output << "\t" << node->key << " [label = \"" << node->data << "\"];" << endl;
+            output << "\t" << node->right->key << " [label = \"" << node->right->data << "\"];" << endl;
+            output << "\t" << node->key << " -> " << node->right->key << endl;
+        }
+
+        if (node->left && node->right) {
+            visualizeTree(output, node->left);
+            visualizeTree(output, node->right);
+        }
+        else if (node->left && !node->right) {
+            visualizeTree(output, node->left);
+        }
+        else {
+            visualizeTree(output, node->right);
+        }
     }
-    outFS<<"digraph G {"<<endl;
-    visualizeTree(outFS,root);
-    outFS<<"}";
-    outFS.close();
-    string jpgFilename = outputFilename.substr(0,outputFilename.size()-4)+".jpg";
-    string command = "dot -Tjpg " + outputFilename + " -o " + jpgFilename;
-    system(command.c_str());
 }
-*/
+
