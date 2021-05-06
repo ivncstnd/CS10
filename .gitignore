@@ -1,5 +1,7 @@
 .DS_Store
 *.txt
 *.out
+*.dot
+*.jpg
 .vscode
 test_bst.h
