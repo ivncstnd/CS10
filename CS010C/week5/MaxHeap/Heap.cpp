@@ -66,6 +66,7 @@ void Heap::trickleDown(int index) {
     if (currMax != index) {
         PrintJob* temp = arr[index];
         arr[index] = arr[currMax];
+        arr[currMax] = temp;
         trickleDown(currMax);
     }
 }
