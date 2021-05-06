@@ -122,6 +122,7 @@ string arithmeticExpression::infix_to_postfix() {
     return oss.str();
 }
 
+/* infix tranverses tree as left -> parent -> right */
 void arithmeticExpression::infix(TreeNode *node) {
     if (node) {
         if (node->left) {
@@ -136,6 +137,7 @@ void arithmeticExpression::infix(TreeNode *node) {
     }
 }
 
+/* prefix tranverses tree as parent -> all left children -> all right children */
 void arithmeticExpression::prefix(TreeNode *node) {
     if (node) {
         cout << node->data;
@@ -144,6 +146,7 @@ void arithmeticExpression::prefix(TreeNode *node) {
     }
 }
 
+/* postfix tranverses tree as left -> right -> parent */
 void arithmeticExpression::postfix(TreeNode *node) {
     if (node) {
         postfix(node->left);
