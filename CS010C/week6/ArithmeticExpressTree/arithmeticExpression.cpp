@@ -154,27 +154,20 @@ void arithmeticExpression::postfix(TreeNode *node) {
 
 void arithmeticExpression::visualizeTree(ofstream &output, TreeNode* node) {
     if (node) {
-        if (node->left) {
+        /* Reduce node print redundancy */
+        if(node->left && node->right) 
             output << "\t" << node->key << " [label = \"" << node->data << "\"];" << endl;
+        /* If a left and right node exist, format to dotty syntax and link the parent node to the child node */
+        if (node->left) {
             output << "\t" << node->left->key << " [label = \"" << node->left->data << "\"];" << endl;
             output << "\t" << node->key << " -> " << node->left->key << endl;
         }
+        visualizeTree(output, node->left);
         if (node->right) {
-            output << "\t" << node->key << " [label = \"" << node->data << "\"];" << endl;
             output << "\t" << node->right->key << " [label = \"" << node->right->data << "\"];" << endl;
             output << "\t" << node->key << " -> " << node->right->key << endl;
         }
-
-        if (node->left && node->right) {
-            visualizeTree(output, node->left);
-            visualizeTree(output, node->right);
-        }
-        else if (node->left && !node->right) {
-            visualizeTree(output, node->left);
-        }
-        else {
-            visualizeTree(output, node->right);
-        }
+        visualizeTree(output, node->right);
     }
 }
 
