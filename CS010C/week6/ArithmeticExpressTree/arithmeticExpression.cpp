@@ -155,22 +155,17 @@ void arithmeticExpression::postfix(TreeNode *node) {
     }
 }
 
-void arithmeticExpression::visualizeTree(ofstream &output, TreeNode* node) {
-    if (node) {
-        /* Reduce node print redundancy */
-        if(node->left && node->right) 
-            output << "\t" << node->key << " [label = \"" << node->data << "\"];" << endl;
-        /* If a left and right node exist, format to dotty syntax and link the parent node to the child node */
-        if (node->left) {
-            output << "\t" << node->left->key << " [label = \"" << node->left->data << "\"];" << endl;
-            output << "\t" << node->key << " -> " << node->left->key << endl;
+void arithmeticExpression::visualizeTree(ofstream & outFS, TreeNode *n){
+    if(n){
+        outFS<<n->key << "[ label = \""<<n->data<<"\"];"<<endl;
+        if(n->left){
+            visualizeTree(outFS,n->left);
+            outFS<<n->key <<" -> " <<n->left->key<<";"<<endl;    
         }
-        visualizeTree(output, node->left);
-        if (node->right) {
-            output << "\t" << node->right->key << " [label = \"" << node->right->data << "\"];" << endl;
-            output << "\t" << node->key << " -> " << node->right->key << endl;
+        
+        if(n->right){
+            visualizeTree(outFS,n->right);
+            outFS<<n->key <<" -> " <<n->right->key<<";"<<endl;    
         }
-        visualizeTree(output, node->right);
     }
 }
-
