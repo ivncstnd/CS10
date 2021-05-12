@@ -155,6 +155,7 @@ void arithmeticExpression::postfix(TreeNode *node) {
     }
 }
 
+/* traverses in prefix order algorithm */
 void arithmeticExpression::visualizeTree(ofstream & outFS, TreeNode *n){
     if(n){
         outFS<<n->key << "[ label = \""<<n->data<<"\"];"<<endl;

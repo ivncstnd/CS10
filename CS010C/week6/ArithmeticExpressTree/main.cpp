@@ -34,5 +34,14 @@ int main(){
     ex3.visualizeTree("expr3.dot");
     cout<<endl;
 
+    string expr4 = "((a * 2) + (b - c)) / d";
+    arithmeticExpression ex4(expr4);
+    ex4.buildTree();
+    cout<<"expression 3: "<<expr4<<endl;
+    cout<<"infix: "; ex4.infix(); cout<<endl;
+    cout<<"prefix: "; ex4.prefix(); cout<<endl;
+    cout<<"postfix: "; ex4.postfix(); cout<<endl;
+    ex4.visualizeTree("expr4.dot");
+    cout<<endl;
     return 0;
 }
