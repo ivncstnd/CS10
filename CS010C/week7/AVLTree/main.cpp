@@ -10,7 +10,8 @@ int menu() {
   cout 
     << "1. Insert" << endl
     << "2. Print" << endl
-    << "3. Quit" << endl;
+    << "3. Visualize" << endl
+    << "4. Quit" << endl;
   cin >> choice;
 
   // fix buffer just in case non-numeric choice entered
@@ -28,7 +29,7 @@ int main( ) {
 
   string entry;
 
-  while (choice != 3) {
+  while (choice != 4) {
 
     if (choice == 1) {
       cout << "Enter string to insert: ";
@@ -40,7 +41,9 @@ int main( ) {
     } else if (choice == 2) {
       tree.printBalanceFactors();
 
-    } 
+    } else if (choice == 3) {
+        tree.visualizeTree("o.dot");
+    }
     //fix buffer just in case non-numeric choice entered
     choice = menu();
   }

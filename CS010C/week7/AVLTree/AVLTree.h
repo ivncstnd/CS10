@@ -19,16 +19,16 @@ class AVLTree {
         bool search(const string &key) const;
 
         //printers
-            void printBalanceFactors(); //new
-            void visualizeTree(const string &); //given
+        void printBalanceFactors(); //new
+        void visualizeTree(const string &); //given
 
       private:
         //new
 		Node* findUnbalancedNode(Node*);//done
 		Node* rotateLeft(Node*);//done
 		Node* rotateRight(Node*);//done
-		    void printBalanceFactors(Node*);
-		    void visualizeTree(ofstream&, Node*);//given
+		void printBalanceFactors(Node*);
+		void visualizeTree(ofstream&, Node*);//given
         void rebalance(Node*); //done
 		void setBalanceFactors(Node*); //done
 

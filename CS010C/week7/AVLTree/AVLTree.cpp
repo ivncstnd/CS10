@@ -16,12 +16,12 @@ void AVLTree::insert(const string &word) {
     Node* currNode = root;
     Node* parentNode = nullptr;
 
-    if (root == nullptr) {
+    if (!root) {
         root = newNode;
         return;
     }
 
-    while (currNode != nullptr){
+    while (currNode){
         parentNode = currNode;
         if (newNode -> key == parentNode -> key){
             newNode -> count += 1;
@@ -56,19 +56,19 @@ int AVLTree::balanceFactor(Node* node){
     int leftHeight = 0;
     int rightHeight = 0;
 
-    if(node == nullptr){
+    if(!node){
         return -1;
     }
 
     if(node -> left){
         leftHeight = height(node -> left);
-    }else if(node -> left == nullptr){
+    }else if(!node -> left){
         leftHeight = -1;
     }
 
     if(node -> right){
         rightHeight = height(node -> right);
-    }else if(node -> right == nullptr){
+    }else if(!node -> right){
         rightHeight = -1;
     }
 
@@ -111,7 +111,7 @@ void AVLTree::visualizeTree(const string &outputFilename){
 Node* AVLTree::findUnbalancedNode(Node* node){
     Node* currNode = node;
 
-	while (currNode != nullptr){
+	while (currNode){
 		if (balanceFactor(currNode) >= 2 || balanceFactor(currNode) <= -2){
 			return currNode;
 		}else{
@@ -127,7 +127,7 @@ Node* AVLTree::rotateLeft(Node* node) {
 	Node* child = node->right;
 	Node* childChild = child->left;
 	
-	if(parent == nullptr){
+	if(!parent){
 		root = child;
 	}else{
 		if(parent->key > node->key){
@@ -150,7 +150,7 @@ Node* AVLTree::rotateRight(Node* node) {
 	Node* child = node->left;
 	Node* childChild = child->right;
 	
-	if(parent == nullptr){
+	if(!parent){
 		root = child;
 	}else{
 		if(parent->key > node->key){
@@ -169,7 +169,7 @@ Node* AVLTree::rotateRight(Node* node) {
 }
 
 void AVLTree::printBalanceFactors(Node* node) {
-	if (node != nullptr) {
+	if (node) {
 		printBalanceFactors(node->left);
 		cout << node->key << "(" << balanceFactor(node) << "), ";
 		printBalanceFactors(node->right);
@@ -191,7 +191,7 @@ void AVLTree::visualizeTree(ofstream & outFS, Node *n){
 }
 
 void AVLTree::rebalance(Node* node){
-    while(findUnbalancedNode(node) != nullptr){
+    while(findUnbalancedNode(node)){
         Node* unbalancedNode = findUnbalancedNode(node);
         int balFac = balanceFactor(unbalancedNode);
 		int balFacLeft = balanceFactor(unbalancedNode->left);
@@ -217,14 +217,12 @@ void AVLTree::rebalance(Node* node){
 }
 
 void AVLTree::setBalanceFactors(Node* node){
-    if(node != nullptr){
+    if(node){
         node->balFactor = balanceFactor(node);
         setBalanceFactors(node -> left);
         setBalanceFactors(node -> right);
     }
 }
-
-
 
 int AVLTree::height(Node* root) const {
     if (!root) {
