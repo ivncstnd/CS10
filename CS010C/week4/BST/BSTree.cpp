@@ -85,32 +85,54 @@ Node* BSTree::insert(const string &newString, Node* root) {
     return root;
 }
 
+// given a key, delete the key from the tree and return a new tree root
 Node* BSTree::remove(const string &key, Node* root) {
+    // if it doesn't exist return
     if (!root) {
         return root;
     }
+
+    // directional movement based on key
     if (key > root->key) {
         root->right = remove(key, root->right);
     } else if (key < root->key) {
         root->left = remove(key, root->left);
+    // key found, to be deleted
     } else {
+        // if the count is greater than 1, dec and return
         if (root->count > 1) {
             root->count -= 1;
             return root;
         }
-        Node* temp;
+        
+        // if node has no left child
         if (!root->left) {
-            temp = root->right;
-            delete root;
-            return temp;
-        } else if (!root->right) {
-            temp = root->left;
-            delete root;
-            return temp;
+            // however a right child exists
+            if (root->right) {
+                // grab the smallest key from the right subtree (in-order successor)
+                Node* temp = leftMostNode(root->right);
+                // set the new key to the old position
+                root->key = temp->key;
+                root->count = temp->count;
+                temp->count = 1;
+                // delete the successor
+                root->right = remove(temp->key, root->right);
+            // else delete leaf
+            } else {
+                Node* temp = root->left;
+                delete root;
+                return temp;
+            }
+        } else {
+            // grab the largest key from the left subtree (in-order predecessor)
+            Node *temp = rightMostNode(root->left);
+            // set the new key to the old position
+            root->key = temp->key;
+            root->count = temp->count;
+            temp->count = 1;
+            // delete the predecessor
+            root->left = remove(temp->key, root->left);
         }
-        temp = leftMostNode(root->right);
-        root->key = temp->key;
-        root->right = remove(temp->key, root->right);
     }
     return root;
 }
@@ -153,11 +175,7 @@ void BSTree::preOrder(Node* root) const {
     if (!root) {
         return;
     }
-    if (root->key != deepMostNode(this->root)) {
-        cout << root->key << "(" << root->count << "), ";
-    } else {
-        cout << root->key << "(" << root->count << ")" << endl;
-    }
+    cout << root->key << "(" << root->count << "), ";
     preOrder(root->left);
     preOrder(root->right);
 }
@@ -172,11 +190,7 @@ void BSTree::postOrder(Node* root) const {
     }
     postOrder(root->left);
     postOrder(root->right);
-    if (root->key != this->root->key) {
-        cout << root->key << "(" << root->count << "), ";
-    } else {
-        cout << root->key << "(" << root->count << ")" << endl;
-    }
+    cout << root->key << "(" << root->count << "), ";
 }
 
 /* Outputs on 2nd visit
@@ -188,11 +202,7 @@ void BSTree::inOrder(Node* root) const {
         return;
     }
     inOrder(root->left);
-    if (root->key != rightMostNode(this->root)->key) {
-        cout << root->key << "(" << root->count << "), ";
-    } else {
-        cout << root->key << "(" << root->count << ")" << endl;
-    }
+    cout << root->key << "(" << root->count << "), ";
     inOrder(root->right);
 }
 
@@ -213,24 +223,4 @@ Node* BSTree::leftMostNode(Node* root) const {
         return i;
     }
     return nullptr;
-}
-
-/* Courtesy of https://www.geeksforgeeks.org/find-deepest-node-binary-tree/ */
-void BSTree::findDeepestNode(Node* root, int lvl, int &vstlvl, string &ret) const {
-    if (!root) {
-        return;
-    }
-    findDeepestNode(root->right, ++lvl, vstlvl, ret);
-    if (lvl > vstlvl) {
-        vstlvl = lvl;
-        ret = root->key;
-    }
-    findDeepestNode(root->left, ++lvl, vstlvl, ret);
-}
-
-string BSTree::deepMostNode(Node* root) const {
-    string ret = "";
-    int vstlvl = 0;
-    findDeepestNode(root, 0, vstlvl, ret);
-    return ret;
 }

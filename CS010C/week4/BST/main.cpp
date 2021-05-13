@@ -7,10 +7,13 @@ using namespace std;
 void printOrders(BSTree *tree) {
   cout << "Preorder = ";
   tree->preOrder( );
+  cout << endl;
   cout << "Inorder = ";
   tree->inOrder( );
+  cout << endl;
   cout << "Postorder = ";
   tree->postOrder( );
+  cout << endl;
 }
 
 
@@ -60,10 +63,11 @@ int main() {
         } else if (choice == 4) {
           cout << "Enter string to search for: ";
           getline(cin, entry);
+          cout << endl;
           if (tree.search(entry) == 1) {
-            cout << entry << " is within the tree.";
+            cout << "Found";
           } else {
-            cout << entry << " is not within the tree.";
+            cout << "Not Found";
           }
           cout << endl;
         } else if (choice == 5) {
@@ -73,12 +77,8 @@ int main() {
         } else if (choice == 7) {
           cout << "Enter string: ";
           getline(cin, entry);
-          if (tree.height(entry) != -1) {
-            cout << entry << "'s height on the tree is " << tree.height(entry) << "." << endl;
-          } else {
-            cout << entry << " does not exist on the tree." << endl;
-          }
-          
+          cout << endl;
+          cout << "Height of subtree rooted at " << entry << ": " << tree.height(entry) << endl;
         }
         //fix buffer just in case non-numeric choice entered
         choice = menu();

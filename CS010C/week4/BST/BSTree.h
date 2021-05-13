@@ -64,7 +64,7 @@ class BSTree {
         void inOrder() const;
       private:
          Node* insert(const string &newString, Node* root);
-         Node* remove(const string &key, Node* root);
+         Node* remove(const string &key, Node* node);
          Node* search(const string &key, Node* root) const;
          int height(Node* root) const;
          void preOrder(Node* root) const;
@@ -72,8 +72,6 @@ class BSTree {
          void inOrder(Node* root) const;
          Node* rightMostNode(Node* root) const;
          Node* leftMostNode(Node* root) const;
-         void findDeepestNode(Node* root, int lvl, int &vstlvl, string &ret) const;
-         string deepMostNode(Node* root) const;
 };
 
 #endif // __BSTREE_H__
