@@ -7,12 +7,12 @@ using namespace std;
 
 class BSTree {
     private:
-        Node *root;
+        Node* root;
     public:
         /* Constructors */
         /* Default constructor */
         BSTree();
-        ~BSTree();
+        //~BSTree();
 
         /* Mutators */
         /* Insert an item into the binary search tree. 
@@ -62,6 +62,18 @@ class BSTree {
         void preOrder() const;
         void postOrder() const;
         void inOrder() const;
+      private:
+         Node* insert(const string &newString, Node* root);
+         Node* remove(const string &key, Node* root);
+         Node* search(const string &key, Node* root) const;
+         int height(Node* root) const;
+         void preOrder(Node* root) const;
+         void postOrder(Node* root) const;
+         void inOrder(Node* root) const;
+         Node* rightMostNode(Node* root) const;
+         Node* leftMostNode(Node* root) const;
+         void findDeepestNode(Node* root, int lvl, int &vstlvl, string &ret) const;
+         string deepMostNode(Node* root) const;
 };
 
 #endif // __BSTREE_H__

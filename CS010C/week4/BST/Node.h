@@ -7,10 +7,10 @@ using namespace std;
 
 class Node {
     public:
+        Node(string);
         string key;
-        int count;
-        Node* left;
-        Node* right;
-        Node* parent;
+        int count = 1;
+        Node* left = nullptr;
+        Node* right = nullptr;
 };
 #endif

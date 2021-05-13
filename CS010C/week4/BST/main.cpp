@@ -1,7 +1,6 @@
 #include <iostream>
 #include <limits>
 #include "BSTree.h"
-#include "test_bst.h"
 
 using namespace std;
 
@@ -13,6 +12,7 @@ void printOrders(BSTree *tree) {
   cout << "Postorder = ";
   tree->postOrder( );
 }
+
 
 int menu() {
   int choice = 0;
@@ -36,11 +36,7 @@ int menu() {
   return choice;
 }
 
-int main( ) {
-    // Pass all your tests before running the executable main
-    run_tests();  // TODO: Remove before submitting ALONG WITH test_bst.h
-    return 0;
-
+int main() {
     BSTree tree;
 
     int choice = menu();
@@ -51,20 +47,42 @@ int main( ) {
     
         if (choice == 1) {
           cout << "Enter string to insert: ";
+          getline(cin, entry);
+          tree.insert(entry);
+          cout << endl;
         } else if (choice == 2) {
           cout << "Enter string to remove: ";
+          getline(cin, entry);
+          tree.remove(entry);
+          cout << endl;
         } else if (choice == 3) {
+          printOrders(&tree);
         } else if (choice == 4) {
           cout << "Enter string to search for: ";
+          getline(cin, entry);
+          if (tree.search(entry) == 1) {
+            cout << entry << " is within the tree.";
+          } else {
+            cout << entry << " is not within the tree.";
+          }
+          cout << endl;
         } else if (choice == 5) {
-          cout << "Smallest: " << endl;
+          cout << "Smallest: " << tree.smallest() << endl;
         } else if (choice == 6) {
-          cout << "Largest: " << endl;
+          cout << "Largest: " << tree.largest() << endl;
         } else if (choice == 7) {
           cout << "Enter string: ";
+          getline(cin, entry);
+          if (tree.height(entry) != -1) {
+            cout << entry << "'s height on the tree is " << tree.height(entry) << "." << endl;
+          } else {
+            cout << entry << " does not exist on the tree." << endl;
+          }
+          
         }
         //fix buffer just in case non-numeric choice entered
         choice = menu();
     }
     return 0;
+  
 }
