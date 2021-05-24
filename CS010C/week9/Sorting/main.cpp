@@ -78,7 +78,7 @@ int Midpoint_partition(int numbers[], int i, int k) {
             --k;
         }
         if (i < k) {
-            int temp = numbers[k];
+            int temp = numbers[i];
             numbers[i] = numbers[k];
             numbers[k] = temp;
             ++i;
@@ -111,7 +111,7 @@ int MedianOfThree_partition(int numbers[], int i, int k) {
             --k;
         }
         if (i < k) {
-            int temp = numbers[k];
+            int temp = numbers[i];
             numbers[i] = numbers[k];
             numbers[k] = temp;
             ++i;
