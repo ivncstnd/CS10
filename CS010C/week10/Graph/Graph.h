@@ -20,9 +20,11 @@ private:
 public:
   Graph();
   Graph(ifstream&);
-  ~Graph();
+  //~Graph();
   void output_graph(const string &);
   void bfs();
+private:
+  void output_graph(ofstream&);
 };
 
 #endif /* GRAPH_H_ */
