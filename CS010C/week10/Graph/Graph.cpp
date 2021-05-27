@@ -29,7 +29,7 @@ Graph::Graph(ifstream& inFS) {
         string vertexOne = "";
         int u = 0;
         inFS >> vertexOne;
-        for(int j = 0; j < vertices.size(); j++) {
+        for(unsigned j = 0; j < vertices.size(); j++) {
             if(vertices.at(j).label == vertexOne) {
                 u = j;
                 break;
@@ -40,7 +40,7 @@ Graph::Graph(ifstream& inFS) {
         string vertexTwo = "";
         int v = 0;
         inFS >> vertexTwo;
-        for(int j = 0; j < vertices.size(); j++) {
+        for(unsigned j = 0; j < vertices.size(); j++) {
             if(vertices.at(j).label == vertexTwo) {
                 v = j;
                 break;
