@@ -13,6 +13,7 @@ class MaxHeap {
         int s;
     public:
         MaxHeap() : s(0) {}
+        MaxHeap(int s) : s(s) {}
         void enqueue(const string &);
         Key* dequeue();
         bool empty() const;

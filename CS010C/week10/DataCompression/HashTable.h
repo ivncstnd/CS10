@@ -8,59 +8,65 @@
 using namespace std;
 
 template <typename K, typename V>
-struct Node {
-    K key;
-    V value;
-    Node(K key, V value) : key(key),  value(value) {}
+class Node {
+    public:
+        K key;
+        V value;
+        Node(K key, V value) : key(key),  value(value) {}
 };
 
 template <typename K, typename V>
 class HashTable {
     private:
         Node<K, V> **arr;
-        int size = 0;
+        int s;
     public:
-        HashTable(int);
-        void put(K, V, int);
-        V get(K) const;
+        HashTable() {
+            s = 0;
+            arr = new Node<K, V>*[s];
+        }
+        HashTable(int s) {
+            this->s = s;
+            arr = new Node<K, V>*[s];
+        }
+        void put(K key, V value) {
+            Node<K, V>* temp = new Node<K, V>(key, value);
+            int index = computeHash(key);
+            while(arr[index]) {
+                index++;
+                index %= s;
+            }
+            arr[index] = temp;
+        }
+        int size() const {
+            return s;
+        }
+        V get(K key) const {
+            int index = computeHash(key);
+            while (arr[index]) {
+                if (arr[index]->key == key)
+                    return arr[index]->value;
+                index++;
+                index %= s;
+            }
+        }
+        void output(ofstream &outFS) const {
+            for (int i = 0; i < s; i++) {
+                outFS << arr[i]->key << " " << arr[i]->value << endl;
+            }
+        }
     private:
-        int computeHash(int);
+        int computeHash(const string &key) const {
+            unsigned hash = 5381;
+            for (char c : key) {
+                hash = (hash * 33) + c;
+            }
+            return hash % s;
+        }
+        int computeHash(int key) const {
+            return key % s;
+        }
 };
 
 #endif
 
-template <typename K, typename V>
-HashTable<K, V>::HashTable(int s) {
-    size = s;
-    arr = new Node<K, V>*[size];
-}
-
-template <typename K, typename V>
-int HashTable<K, V>::computeHash(int key) {
-    return key % size;
-}
-
-template <typename K, typename V>
-void HashTable<K, V>::put(K key, V value, int reference) {
-    Node<K, V>* temp = new Node<K, V>(key, value);
-    int index = computeHash(reference);
-    while(arr[index]) {
-        index++;
-        index %= size;
-    }
-    arr[index] = temp;
-}
-
-template <typename K, typename V>
-V HashTable<K, V>::get(K key) const {
-    int index = computeHash(key);
-    while (arr[index]) {
-        int counter = 0;
-        if (counter++ > size) 
-            return nullptr;
-        if (arr[index]->key == key)
-            return arr[index]->value;
-        index++;
-        index %= size;
-    }
-}
