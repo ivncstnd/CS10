@@ -1,5 +1,4 @@
 #include "HuffmanCoding.h"
-#include <cstdio>
 
 using namespace std;
 
@@ -73,6 +72,7 @@ void HuffmanCoding::storeDecodedBuffer(ifstream &inFS) {
             stringstream ss(line);
             string word;
             while (ss >> word) {
+                //cout << word << "SDB" << endl;;
                 tokenize(word);
             }
             fileBuffer.push_back("\n");
@@ -114,11 +114,10 @@ void HuffmanCoding::storeTables() {
             out->code += i;
             char buffer[500];
             int j;
-            j = sprintf(buffer, "token: %13s", out->token.c_str());
+            j = sprintf(buffer, "token: %16s", out->token.c_str());
             j += sprintf(buffer + j, "  frequency: %d", out->frequency);
             j += sprintf(buffer + j, "  code: %d\n", out->code);
             cout << buffer;
-            //cout << "token: " << out->token  << "        frequency: " << out->frequency  << "     code: " << out->code << endl;
             encodeTable->put(out->token, out->code);
             decodeTable->put(out->code, out->token);
             i++;
