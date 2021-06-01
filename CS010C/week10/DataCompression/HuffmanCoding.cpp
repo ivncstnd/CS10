@@ -1,4 +1,5 @@
 #include "HuffmanCoding.h"
+#include <cstdio>
 
 using namespace std;
 
@@ -111,7 +112,13 @@ void HuffmanCoding::storeTables() {
         while (!frequencyQueue.empty()) {
             Key* out = frequencyQueue.dequeue();
             out->code += i;
-            cout << "token: " << out->token  << "        frequency: " << out->frequency  << "     code: " << out->code << endl;
+            char buffer[500];
+            int j;
+            j = sprintf(buffer, "token: %13s", out->token.c_str());
+            j += sprintf(buffer + j, "  frequency: %d", out->frequency);
+            j += sprintf(buffer + j, "  code: %d\n", out->code);
+            cout << buffer;
+            //cout << "token: " << out->token  << "        frequency: " << out->frequency  << "     code: " << out->code << endl;
             encodeTable->put(out->token, out->code);
             decodeTable->put(out->code, out->token);
             i++;
