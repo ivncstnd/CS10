@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 void HuffmanCoding::storeNewFile(ifstream &inFS) {
     storeDecodedBuffer(inFS);
     storeFrequency();
@@ -13,25 +12,8 @@ void HuffmanCoding::storeEncodedFile(ifstream &inFS) {
     storeEncodedBuffer(inFS);
 }
 
-void HuffmanCoding::encodeBuffer(ofstream &outFS) {
-    for (int i = 0; i < fileBuffer.size(); i++) {
-        if (fileBuffer.at(i) == "\n" || fileBuffer.at(i) == "") {
-            outFS << fileBuffer.at(i);
-            continue;
-        }
-        outFS << encodeTable->get(fileBuffer.at(i)) << " ";
-    }
-}
-
-void HuffmanCoding::decodeBuffer(ofstream &outFS) {
-     for (int i = 0; i < fileBuffer.size(); i++) {
-        if (fileBuffer.at(i) == "\n" || fileBuffer.at(i) == "") {
-            outFS << fileBuffer.at(i);
-            continue;
-        }
-        int temp = stoi(fileBuffer.at(i));
-        outFS << decodeTable->get(temp) << " ";
-    }
+void HuffmanCoding::storeDecodedFile(ifstream &inFS) {
+    storeDecodedBuffer(inFS);
 }
 
 void HuffmanCoding::readHashTables(ifstream &inFS) {
@@ -60,6 +42,28 @@ void HuffmanCoding::writeHashTables(ofstream &outFS) {
     encodeTable->output(outFS);
     decodeTable->output(outFS);
 }
+
+void HuffmanCoding::encodeBuffer(ofstream &outFS) {
+    for (int i = 0; i < fileBuffer.size(); i++) {
+        if (fileBuffer.at(i) == "\n" || fileBuffer.at(i) == "") {
+            outFS << fileBuffer.at(i);
+            continue;
+        }
+        outFS << encodeTable->get(fileBuffer.at(i)) << " ";
+    }
+}
+
+void HuffmanCoding::decodeBuffer(ofstream &outFS) {
+     for (int i = 0; i < fileBuffer.size(); i++) {
+        if (fileBuffer.at(i) == "\n" || fileBuffer.at(i) == "") {
+            outFS << fileBuffer.at(i);
+            continue;
+        }
+        int temp = stoi(fileBuffer.at(i));
+        outFS << decodeTable->get(temp) << " ";
+    }
+}
+
 
 void HuffmanCoding::storeDecodedBuffer(ifstream &inFS) {
     while (!inFS.eof()) {
