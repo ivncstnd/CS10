@@ -2,10 +2,10 @@
 
 using namespace std;
 
-void HuffmanCoding::storeNewFile(ifstream &inFS) {
+void HuffmanCoding::storeNewFile(ifstream &inFS, ofstream &outFS) {
     storeDecodedBuffer(inFS);
     storeFrequency();
-    storeTables();
+    storeTables(outFS);
 }
 
 void HuffmanCoding::storeEncodedFile(ifstream &inFS) {
@@ -104,7 +104,7 @@ void HuffmanCoding::storeFrequency() {
     }
 }
 
-void HuffmanCoding::storeTables() {
+void HuffmanCoding::storeTables(ofstream &outFS) {
     if (!frequencyQueue.empty()) {
         encodeTable = new HashTable<string, int>(frequencyQueue.size());
         decodeTable = new HashTable<int, string>(frequencyQueue.size());
@@ -112,12 +112,12 @@ void HuffmanCoding::storeTables() {
         while (!frequencyQueue.empty()) {
             Key* out = frequencyQueue.dequeue();
             out->code += i;
-            char buffer[500];
+            char buffer[200];
             int j;
             j = sprintf(buffer, "token: %16s", out->token.c_str());
             j += sprintf(buffer + j, "  frequency: %d", out->frequency);
             j += sprintf(buffer + j, "  code: %d\n", out->code);
-            cout << buffer;
+            outFS << buffer;
             encodeTable->put(out->token, out->code);
             decodeTable->put(out->code, out->token);
             i++;

@@ -28,7 +28,7 @@ class HuffmanCoding {
         HuffmanCoding() : frequencyQueue(0), fileBuffer(0), encodeTable(0), decodeTable(0) {}
 
         /* Store a new file's decoded buffer and encode / decode table */
-        void storeNewFile(ifstream &);
+        void storeNewFile(ifstream &, ofstream &);
 
         /* Given encode & decode tables, store integer encoded file */
         void storeEncodedFile(ifstream &);
@@ -59,7 +59,7 @@ class HuffmanCoding {
         void storeFrequency();
 
         /* Creates encode & decode tables from emptying a frequency queue */
-        void storeTables();
+        void storeTables(ofstream &);
 
         /* Tokenizes strings from punctuation */
         void tokenize(string s);

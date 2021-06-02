@@ -23,7 +23,12 @@ int main(int argc, char* argv[]) {
     if (arg == "-c" || arg == "--compress") {
         // if no table was passed -- new file compress
         if (argc < 4) {
-            file.storeNewFile(inputFile);
+            ofstream outputDebug("debug.txt");
+            if (!outputDebug) {
+                cerr << "Error opening output file" << endl;
+                exit(1);
+            }
+            file.storeNewFile(inputFile, outputDebug);
             ofstream outputFile(argv[2]);
             if (!outputFile) {
                 cerr << "Error opening output file" << endl;
