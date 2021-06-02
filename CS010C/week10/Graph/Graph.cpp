@@ -91,14 +91,16 @@ void Graph::bfs(){
     }
 }
 
-void Graph::output_graph(ofstream &s) {
+void Graph::output_graph(ofstream &outFS) {
     for(unsigned i = 0; i < vertices.size(); i++) {
-        s << vertices.at(i).label << " [label=\"" << vertices.at(i).label << ", distance = " << vertices.at(i).distance << "\", color=\"" << vertices.at(i).color << "\"];" << endl;
+        if (vertices.at(i).distance == INT_MAX)
+            continue;
+        outFS << vertices.at(i).label << " [label=\"" << vertices.at(i).label << ", distance = " << vertices.at(i).distance << "\", color=\"" << vertices.at(i).color << "\"];" << endl;
         Vertex v = vertices.at(i);
         for (auto edge : v.neighbors) {
             int vertexOne = i;
             int vertexTwo = edge.first;
-            s << vertices.at(vertexOne).label << " -> " << vertices.at(vertexTwo).label << ";" << endl;
+            outFS << vertices.at(vertexOne).label << " -> " << vertices.at(vertexTwo).label << ";" << endl;
         }
     }
 }
