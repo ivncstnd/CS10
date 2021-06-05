@@ -52,6 +52,7 @@ int main(int argc, char* argv[]) {
             }
             file.encodeBuffer(outputFile);
         }
+        cout << "File encoded." << endl;
     }  else if (arg == "-d" || arg == "--decompress") {
         if (argc < 4) {
             cerr << "Usage error: required <table>" << endl;
@@ -70,6 +71,7 @@ int main(int argc, char* argv[]) {
             }
             file.decodeBuffer(outputFile);
         }
+        cout << "File decoded." << endl;
     } else {
         cerr << "Usage error: invalid <flag>" << endl << endl;
         cerr << "-c, --compress                 compress a file given input, optional hash table" << endl;

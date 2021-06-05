@@ -28,6 +28,9 @@ class HashTable {
         HashTable(int s) {
             this->s = s;
             arr = new Node<K, V>*[s];
+            for (int i = 0; i < s; i++) {
+                arr[i] = nullptr;
+            }
         }
         void put(K key, V value) {
             Node<K, V>* temp = new Node<K, V>(key, value);
